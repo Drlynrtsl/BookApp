@@ -1,0 +1,76 @@
+﻿@using BookApp.Web.Startup
+@using BookApp.Web.Models.Book
+@using BookApp.Books.Dto
+@model ListBookViewModel
+@{
+    //ViewBag.Title = L("Book");
+    //ViewBag.CurrentPageName = PageNames.Book;
+    //var model = ViewBag.Model as List<BookApp.Controllers.BookController.User>;
+}
+
+@section scripts
+    {
+    <environment names="Development">
+        <script src="~/view-resources/Views/Book/Index.js" asp-append-version="true"></script>
+    </environment>
+
+    @*<environment names="Staging,Production">
+        <script src="~/view-resources/Views/Book/Book.min.js" asp-append-version="true"></script>
+    </environment>*@
+}
+
+<div class="row">
+<div class="col-md-6">
+    <!--Use for bulk actions-->
+</div>
+    @*<div class="col-md-6">
+        @await Html.PartialAsync("~/Views/Book/Index.AdvancedSearch.cshtml")
+    </div>*@
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table id="UsersTable" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Book Id</th>
+                                    <th scope="col">Book Title</th>
+                                    <th scope="col">Author</th>
+                                    <th scope="col">Publisher</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                        @foreach (var books in Model.Books)
+                        {
+                            <tr>
+                                <td>@books.BookId</td>
+                                <td>@books.BookTitle</td>
+                                <td>@books.BookAuthor</td>
+                                <td>@books.BookPublisher</td>
+                            </tr>
+                        }
+                    </table>
+                    </div>
+                    
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                @*<button class="save-button btn bg-blue float-sm-right btn-add" type="button" onclick="location.href'@Url.Action("Save", "Book")'">Add</button>*@
+                <a href="/Book/Create" class="save-button btn bg-blue float-sm-right btn-add" type="button">Add</a>
+                @*<div class="col-md-6">
+                @Html.PartialAsync("~/Views/Book/CreateBook.cshtml")
+                </div>*@
+            </div>
+        </div>
+    </div>
+
+</section>

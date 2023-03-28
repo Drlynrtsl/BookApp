@@ -1,0 +1,29 @@
+﻿@model BookApp.Web.Models.Book.BookViewModel
+@{
+}
+<h2>Add Book here</h2>
+
+<div class="tab-content mt-4">
+    <form method="post" action="Add">
+        <div>
+            <label class="col-md-3 col-form-label"></label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="BookTitle">
+            </div>
+        </div>
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label"></label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="BookAuthor">
+            </div>
+        </div>
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label"></label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="BookPublisher">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+</div>
