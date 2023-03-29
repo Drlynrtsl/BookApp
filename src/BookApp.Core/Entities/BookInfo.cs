@@ -11,8 +11,6 @@ namespace BookApp.Entities
 {
     public class BookInfo: FullAuditedEntity<int>
     {
-        public Guid BookId { get; set; }
-
         [Required]
         public string BookTitle { get; set; }
 
@@ -20,10 +18,6 @@ namespace BookApp.Entities
         public string BookPublisher { get; set; }
 
         [Required]
-        public string BookAuthor { get; set; }
-
-        public DateTime DateAdded { get; set; }
-
-        public string AddedBy { get; set; }    
+        public string BookAuthor { get; set; }  
     }
 }

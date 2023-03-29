@@ -1,49 +1,59 @@
 ﻿@using BookApp.Web.Models.Book
+@using BookApp.Web.Startup
 @using BookApp.Web.Host.Controllers
-
-
+@model CreateBookViewModel
+@*@{
+    //ViewBag.Title = L("Book");
+    //ViewBag.CurrentPageName = PageNames.Book;
+}*@
+@section scripts{
+    <environment names="Development">
+        <script src="~/view-resources/Views/Book/Create.js" asp-append-version="true"></script>
+    </environment>
+}
 <body>
-    <div class="tab-content mt-4">
-        <section>
-            <h3 style="text-align: center">Book Information Form</h3>
-        </section>
-        <form>
-            <div class="col-6">
+    <div class="bg-opacity-5 py-2" id="form">
+        <div class="container">
+            <h3 class="col-md-10">Book Information Form</h3><br>
+        </div>
+        <form style="text-align: center" name="BookInformationForm" role="form" class="form-validation">
+                <input type="hidden" name="BookId" value="@Model?.BookId" class="form-control">
+
+            <div class="col-md-4 mb-3">
                 <div>
-                    <div class="form-group row required">
+                    <div class="form-group row required text-align: center">
                         <label class="col-md-3 col-form-label" for="rolename">Book Title</label><br>
                         <div class="col-md-9">
-                            <input type="text" name="BookTitle" class="form-control" placeholder="Title" required maxlength="255" minlength="2">
+                            <input type="text" name="BookTitle" value="@Model?.BookTitle" class="form-control" placeholder="Title" required maxlength="255" minlength="2">
                         </div>
                     </div>
-                    <div class="form-group row required">
+                    <div class="form-group row required text-align: center">
                         <label class="col-md-3 col-form-label" for="displayname">Author</label><br>
                         <div class="col-md-9">
-                            <input type="text" name="BookAuthor" class="form-control" placeholder="Author"  required maxlength="32" minlength="2">
+                                <input type="text" name="BookAuthor" value="@Model?.BookAuthor" class="form-control" placeholder="Author" required maxlength="32" minlength="2">
                         </div>
                     </div>
-                    <div class="form-group row required">
+                    <div class="form-group row required text-align: center">
                         <label class="col-md-3 col-form-label" for="displayname">Publisher</label><br>
                         <div class="col-md-9">
-                            <input type="text" name="BookPublisher" class="form-control" placeholder="Publisher" required maxlength="255" minlength="2">
+                                <input type="text" name="BookPublisher" value="@Model?.BookPublisher" class="form-control" placeholder="Publisher" required maxlength="255" minlength="2">
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
-        <section class="content-header">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-sm-6">
+                            <div class="form-group col-sm-6">
                         @*<button class="save-button btn bg-blue float-sm-right btn-add" type="button" onclick="location.href'@Url.Action("Save", "Book")'">Add</button>*@
-                        <a href="/Book" type="button" class="btn btn-primary" name="CreateBook">Add</a>
+                        <button type="button" class="save-button btn btn-primary" name="CreateBook">Save</button>
                         @*<div class="col-md-6">
                         @Html.PartialAsync("~/Views/Book/CreateBook.cshtml")
                         </div>*@
                     </div>
                 </div>
             </div>
-        </section>        
+        </form>
+              
     </div>
 </body>
 

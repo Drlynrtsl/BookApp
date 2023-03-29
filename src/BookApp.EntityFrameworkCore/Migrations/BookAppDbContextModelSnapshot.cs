@@ -1538,15 +1538,9 @@ namespace BookApp.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AddedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("BookAuthor")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("BookId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("BookPublisher")
                         .IsRequired()
@@ -1561,9 +1555,6 @@ namespace BookApp.Migrations
 
                     b.Property<long?>("CreatorUserId")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime>("DateAdded")
-                        .HasColumnType("datetime2");
 
                     b.Property<long?>("DeleterUserId")
                         .HasColumnType("bigint");

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 namespace BookApp.Books.Dto
 {
     [AutoMapTo(typeof(BookInfo))]
+    [AutoMapFrom(typeof(BookInfo))]
     public class BookDto: EntityDto
     {
         [Required]

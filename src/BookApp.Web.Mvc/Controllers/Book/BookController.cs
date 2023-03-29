@@ -31,10 +31,10 @@ namespace BookApp.Web.Host.Controllers
             return View();
         }
 
-       
+
         public async Task<IActionResult> Index()
         {
-            var books = await _bookAppService.GetAllAsync(new PagedBookResultRequestDto { MaxResultCount = int.MaxValue});
+            var books = await _bookAppService.GetAllAsync(new PagedBookResultRequestDto { MaxResultCount = int.MaxValue });
             var model = new ListBookViewModel
             {
                 Books = books.Items.ToList()
@@ -46,25 +46,26 @@ namespace BookApp.Web.Host.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            
+            //var model = new CreateBookViewModel
+
             return View();
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> CreateBook(CreateBookViewModel model)
-        //{
-        //    //var currentUser = AbpSession.UserId;
-        //    var bookDetails = new CreateBookDto
-        //    {
-        //        BookTitle = model.BookTitle,
-        //        BookPublisher = model.BookPublisher,
-        //        BookAuthor = model.BookAuthor
-        //    };
-        //    await _bookAppService.CreateAsync(bookDetails);
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(CreateBookViewModel model)
+        {
+            //var currentUser = AbpSession.UserId;
+            var bookDetails = new CreateBookDto
+            {
+                BookTitle = model.BookTitle,
+                BookPublisher = model.BookPublisher,
+                BookAuthor = model.BookAuthor
+            };
+            await _bookAppService.CreateAsync(bookDetails);
 
-        //    return RedirectToAction("Index","Book");
-        //}
+            return RedirectToAction("Index", "Book");
+        }
 
         //[HttpPost]
         //[ValidateAntiForgeryToken]

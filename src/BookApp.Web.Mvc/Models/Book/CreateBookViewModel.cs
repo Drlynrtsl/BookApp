@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookApp.Web.Models.Book
 {
     public class CreateBookViewModel
     {
+        public Guid BookId { get; set; }
         [Required]
         public string BookTitle { get; set; }
         [Required]
