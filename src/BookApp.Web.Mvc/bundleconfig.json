@@ -160,5 +160,11 @@
     "inputFiles": [
       "wwwroot/view-resources/Views/Book/Save.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Book/Update.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Book/Update.js"
+    ]
   }
 ]

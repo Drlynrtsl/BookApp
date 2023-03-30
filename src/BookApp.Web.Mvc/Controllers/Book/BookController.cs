@@ -44,52 +44,25 @@ namespace BookApp.Web.Host.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create(int id)
         {
-            //var model = new CreateBookViewModel
+            var model = new CreateBookViewModel();
 
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CreateBookViewModel model)
-        {
-            //var currentUser = AbpSession.UserId;
-            var bookDetails = new CreateBookDto
+            if (id != 0)
             {
-                BookTitle = model.BookTitle,
-                BookPublisher = model.BookPublisher,
-                BookAuthor = model.BookAuthor
-            };
-            await _bookAppService.CreateAsync(bookDetails);
+                var book = await _bookAppService.GetAsync(new EntityDto<int>(id));
+                model = new CreateBookViewModel()
+                {
+                    BookTitle = book.BookTitle,
+                    BookAuthor = book.BookAuthor,
+                    BookPublisher = book.BookPublisher,
+                    Id = id
+                };
+            }
+            
 
-            return RedirectToAction("Index", "Book");
+            return View(model);
         }
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-
-
-        //public async Task<IActionResult> AddAsync(BookInfo addBook)
-        //{
-        //    var book = new BookInfo()
-        //    {
-        //        BookId = Guid.NewGuid(),
-        //        BookTitle = addBook.BookTitle,
-        //        BookAuthor = addBook.BookAuthor,
-        //        BookPublisher = addBook.BookPublisher,
-        //        DateAdded = addBook.DateAdded,
-        //        AddedBy = addBook.AddedBy
-        //    };
-
-        //    string message = "Added new book successfully!";
-        //    ViewBag.Message = message;
-
-        //    await _bookAppService.(book);
-        //    await _bookAppService.SaveChangesAsync();
-        //    return RedirectToAction("Add");
-        //}
     }
 
 }

@@ -12,18 +12,10 @@ namespace BookApp.Books.Dto
 {
     [AutoMapTo(typeof(BookInfo))]
     [AutoMapFrom(typeof(BookInfo))]
-    public class BookDto: EntityDto
+    public class BookDto: EntityDto<int>
     {
-        [Required]
-        public Guid BookId { get; set; }
-
-        [Required]
         public string BookTitle { get; set; }
-
-        [Required]
         public string BookPublisher { get; set; }
-
-        [Required]
         public string BookAuthor { get; set; }
     }
 }
