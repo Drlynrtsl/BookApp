@@ -24,6 +24,15 @@ namespace BookApp.Web.Startup
                 )
                 .AddItem(
                     new MenuItemDefinition(
+                        PageNames.Student,
+                        L("Student"),
+                        url: "Student",
+                        icon: "fas fa-info-circle",
+                        requiresAuthentication: true
+                    )
+                )
+                .AddItem(
+                    new MenuItemDefinition(
                         PageNames.About,
                         L("About"),
                         url: "About",

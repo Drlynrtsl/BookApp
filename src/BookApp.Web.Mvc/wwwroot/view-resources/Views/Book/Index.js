@@ -5,28 +5,26 @@
     var _indexPage = "/Book";
 
     $(document).on('click', '.delete-button', function () {
-        var bookId = $(this).attr("book-Id");
-        var bookTitle = $(this).attr("book-Title");
+        var bookId = parseInt($(this).attr("book-id"));
+        var bookTitle = $(this).attr("book-title");
 
-        deleteUser(bookId, bookTitle);
+        deleteId(bookId, bookTitle);
     });
 
-    function deleteUser(bookId) {
+    function deleteId(bookId, bookTitle) {
         abp.message.confirm(
-            swal(
-                l('AreYouSureWantToDelete'),
-                bookTitle),
-            null,
-            (isConfirmed) => {
-                if (book.Id !=0) {
-                    _bookAppService.delete(bookId).done(() => {
-                        swal(l('SuccessfullyDeleted'));
-                        _bookAppService.ajax.reload();
-
-                    });
+            abp.utils.formatString(l('AreYouSureWantToDelete', bookTitle)), null,            
+            function (isConfirmed) {
+                if(isConfirmed) {
+                    if (bookId != 0) {
+                        _bookAppService.delete({ id: bookId }).done(function() {
+                            abp.message.success('Deleted.', '');
+                            location.reload(true);
+                        });
+                    }
                 }
-            }
-        );
+                
+            });
     }
     _$form.closest('div#form')
         .find(".back-button")

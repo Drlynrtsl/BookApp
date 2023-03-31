@@ -24,32 +24,6 @@
         }
     }
 
-    $(document).on('click', '.delete-button', function () {
-        var bookId = $(this).attr("book-Id");
-        var bookTitle = $(this).attr("book-Title");
-
-        deleteUser(bookId, bookTitle);
-    });
-
-    function deleteId() {
-        var book = _$form.serializeFormToObject();
-        if (!_$form.valid()) {
-            return;
-        }
-        abp.ui.setBusy(_$form);        
-            swal('AreYouSureWantToDelete',bookTitle),
-            (isConfirmed) => {
-                if (book.Id != 0) {
-                    _bookAppService.delete(book).done(() => {
-                        swal(l('SuccessfullyDeleted'));
-                        _bookAppService.ajax.reload();
-
-                    });
-                }
-                swal("No changes has been made");
-            };
-    }
-
 
     function cancel() {
         window.location.href = _indexPage;

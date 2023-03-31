@@ -1,0 +1,59 @@
+﻿@using BookApp.Web.Models.Common.Modals
+@using BookApp.Web.Models.Student
+@using BookApp.Web.Startup
+@using BookApp.Web.Host.Controllers
+@model CreateStudentViewModel
+@{
+    ViewBag.Title = L("Student");
+    ViewBag.CurrentPageName = PageNames.Student;
+}
+@section scripts{
+    <environment names="Development">
+        <script src="~/view-resources/Views/Student/Create.js" asp-append-version="true"></script>
+    </environment>
+}
+
+    <body>
+        <div class="bg-opacity-5 py-2" id="form">
+            <form style="text-align: center" name="StudentInformationForm" role="form" class="form-validation form-horizontal">
+                <div class="container">
+                    <h3 class="col-md-10">Student Information Form</h3><br>
+                </div>
+                <input type="hidden" name="Id" value="@Model?.Id" class="form-control">
+                <div class="col-md-9 mb-10">
+                    <div role="tabpanel" class="tab-pane container active">
+                        <div class="form-group row required" style="text-align: center">
+                            <label class="col-md-3 col-form-label">Name</label><br>
+                            <div class="col-md-9">
+                                <input type="text" name="StudentName" id="StudentName" value="@Model?.StudentName" class="form-control" placeholder="Full Name" required maxlength="255" minlength="2">
+                            </div>
+                        </div>
+                        <div class="form-group row required" style="text-align: center">
+                            <label class="col-md-3 col-form-label">Contact Number</label><br>
+                            <div class="col-md-9">
+                                <input type="tel" name="StudentContactNumber" id="StudentContactNumber" value="@Model?.StudentContactNumber" class="form-control" placeholder="Contact Number" required maxlength="32" minlength="2">
+                            </div>
+                        </div>
+                        <div class="form-group row required text-align: center">
+                            <label class="col-md-3 col-form-label">Email</label><br>
+                            <div class="col-md-9">
+                                <input type="email" name="StudentEmail" id="StudentEmail" value="@Model?.StudentEmail" class="form-control" placeholder="Email" required maxlength="255" minlength="2">
+                            </div>
+                        </div>
+                        <div class="form-group row required text-align: center">
+                            <label class="col-md-3 col-form-label">Department</label><br>
+                            <div class="col-md-9">
+                                <input type="text" name="StudentDepartment" id="StudentDepartment" value="@Model?.StudentDepartment" class="form-control" placeholder="Department" required maxlength="255" minlength="2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row modal-footer justify-content-between">
+                    <button type="button" class="back-button btn btn-default" name="Back">Back</button>
+                    <button type="submit" class="save-button btn btn-primary" name="Create">Save</button>
+                </div>
+            </form>
+        </div>
+    </body>
+
+

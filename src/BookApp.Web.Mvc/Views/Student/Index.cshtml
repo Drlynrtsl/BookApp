@@ -1,0 +1,69 @@
+﻿@using BookApp.Students.Dto
+@using BookApp.Web.Models.Student
+@using BookApp.Web.Startup
+@model StudentListViewModel
+
+@{
+    ViewBag.Title = L("Student");
+    ViewBag.CurrentPageName = PageNames.Student;
+}
+
+@section scripts
+    {
+    <environment names="Development">
+        <script src="~/view-resources/Views/Student/Index.js" asp-append-version="true"></script>
+    </environment>
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                    <a href="/Student/Create" class="save-button btn bg-blue float-sm-right" type="button">
+                    <i class="fas fa-plus"> </i> Add Student Info
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table id="BookTable" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Student Id</th>
+                                    <th>Student Name</th>
+                                    <th>Contact Number</th>
+                                    <th>Email</th>
+                                    <th>Department</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                        @foreach (var students in Model.Students)
+                        {
+                            <tr>
+                                <td>@students.Id</td>
+                                <td>@students.StudentName</td>
+                                <td>@students.StudentContactNumber</td>
+                                <td>@students.StudentEmail</td>
+                                <td>@students.StudentDepartment</td>
+                                <td>
+                                    <a href="/Student/Create/@students.Id" type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
+                                        <i class="fas fa-pencil-alt"></i> Update
+                                    </a>
+                                    <button type="button" class="delete-button btn btn-sm bg-danger" name="Delete" student-id="@students.Id" student-name="@students.StudentName">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

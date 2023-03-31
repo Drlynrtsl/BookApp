@@ -166,5 +166,17 @@
     "inputFiles": [
       "wwwroot/view-resources/Views/Book/Update.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Student/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Student/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Student/Create.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Student/Create.js"
+    ]
   }
 ]

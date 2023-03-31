@@ -46,9 +46,9 @@
                                     <a href="/Book/Create/@books.Id" type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
                                         <i class="fas fa-pencil-alt"></i> Update
                                     </a>
-                                    <a href="#" type="button" class="delete-button btn btn-sm bg-danger" name="Delete" book-id="@books.Id" book-id="@books.BookTitle" onclick="location.href='@Url.Action("Create", "Book" )'">
+                                    <button type="button" class="delete-button btn btn-sm bg-danger" name="Delete" book-id="@books.Id" book-title="@books.BookTitle">
                                         <i class="fas fa-trash"></i> Delete
-                                    </a>
+                                    </button>
                                 </td>
                             </tr>
                         }
