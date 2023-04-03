@@ -18,29 +18,30 @@
                     <h3 class="col-md-10">Book Information Form</h3><br>
                 </div>
                 <input type="hidden" name="Id" value="@Model?.Id" class="form-control">
-                <div class="col-md-4 mb-3">
-                    <div>
-                        <div class="form-group row required text-align: center">
-                            <label class="col-md-3 col-form-label" for="rolename">Book Title</label><br>
-                            <div class="col-md-9">
-                                <input type="text" name="BookTitle" id="BookTitle" value="@Model?.BookTitle" class="form-control" placeholder="Title" required maxlength="255" minlength="2">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div>
+                            <div class="form-group row required text-align: center">
+                                <label class="col-md-3 col-form-label" for="rolename">Book Title</label><br>
+                                <div class="col-md-9">
+                                    <input type="text" name="BookTitle" id="BookTitle" value="@Model?.BookTitle" class="form-control" placeholder="Title" required maxlength="255" minlength="2">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row required text-align: center">
-                            <label class="col-md-3 col-form-label" for="displayname">Author</label><br>
-                            <div class="col-md-9">
-                                <input type="text" name="BookAuthor" id="BookAuthor" value="@Model?.BookAuthor" class="form-control" placeholder="Author" required maxlength="32" minlength="2">
+                            <div class="form-group row required text-align: center">
+                                <label class="col-md-3 col-form-label" for="displayname">Author</label><br>
+                                <div class="col-md-9">
+                                    <input type="text" name="BookAuthor" id="BookAuthor" value="@Model?.BookAuthor" class="form-control" placeholder="Author" required maxlength="32" minlength="2">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row required text-align: center">
-                            <label class="col-md-3 col-form-label" for="displayname">Publisher</label><br>
-                            <div class="col-md-9">
-                                <input type="text" name="BookPublisher" id="BookPublisher" value="@Model?.BookPublisher" class="form-control" placeholder="Publisher" required maxlength="255" minlength="2">
+                            <div class="form-group row required text-align: center">
+                                <label class="col-md-3 col-form-label" for="displayname">Publisher</label><br>
+                                <div class="col-md-9">
+                                    <input type="text" name="BookPublisher" id="BookPublisher" value="@Model?.BookPublisher" class="form-control" placeholder="Publisher" required maxlength="255" minlength="2">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="container-fluid">
                     <div class="row">
                         <div class="form-group col-sm-6">
                             @*<button class="save-button btn bg-blue float-sm-right btn-add" type="button" onclick="location.href'@Url.Action("Save", "Book")'">Add</button>*@
@@ -51,7 +52,6 @@
                         </div>*@
                         </div>
                     </div>
-                </div> 
             </form>
         </div>
     </body>

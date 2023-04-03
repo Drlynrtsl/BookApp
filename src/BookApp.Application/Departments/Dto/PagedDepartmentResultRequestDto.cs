@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Abp.Application.Services.Dto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace BookApp.Departments.Dto
 {
-    internal class PagedDepartmentResultRequestDto
+    public class PagedDepartmentResultRequestDto : PagedResultRequestDto
     {
+        public string Keyword { get; set; }
     }
 }

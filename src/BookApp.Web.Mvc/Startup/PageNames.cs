@@ -9,5 +9,6 @@
         public const string Roles = "Roles";
         public const string Book = "Book";
         public const string Student = "Student";
+        public const string Department = "Department";
     }
 }

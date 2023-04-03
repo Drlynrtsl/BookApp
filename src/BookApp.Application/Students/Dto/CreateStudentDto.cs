@@ -19,6 +19,6 @@ namespace BookApp.Students.Dto
         [Required]
         public string StudentEmail { get; set; }
         [Required]
-        public string StudentDepartment { get; set; }
+        public Department StudentDepartment { get; set; }
     }
 }

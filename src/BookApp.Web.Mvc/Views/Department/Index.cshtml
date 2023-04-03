@@ -1,0 +1,62 @@
+﻿@using BookApp.Departments.Dto
+@using BookApp.Web.Models.Department
+@using BookApp.Web.Startup
+@model DepartmentListViewModel
+
+@{
+    ViewBag.Title = L("Department");
+    ViewBag.CurrentPageName = PageNames.Department;
+}
+
+@section scripts
+    {
+    <environment names="Development">
+        <script src="~/view-resources/Views/Department/Index.js" asp-append-version="true"></script>
+    </environment>
+}
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <a href="/Department/Create" class="save-button btn bg-blue float-sm-right" type="button">
+                        <i class="fas fa-plus"> </i> Add Department Info
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table id="BookTable" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Department Id</th>
+                                    <th>Department Name</th>
+                                </tr>
+                            </thead>
+                        @foreach (var departments in Model.Department)
+                        {
+                            <tr>
+                                <td>@departments.Id</td>
+                                <td>@departments.Name</td>
+                                <td>
+                                    <a href="/Department/Create/@departments.Id" type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
+                                        <i class="fas fa-pencil-alt"></i> Update
+                                    </a>
+                                    <button type="button" class="delete-button btn btn-sm bg-danger" name="Delete" department-id="@departments.Id">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

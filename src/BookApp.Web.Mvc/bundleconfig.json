@@ -178,5 +178,17 @@
     "inputFiles": [
       "wwwroot/view-resources/Views/Student/Create.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Department/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Department/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Department/Create.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Department/Create.js"
+    ]
   }
 ]

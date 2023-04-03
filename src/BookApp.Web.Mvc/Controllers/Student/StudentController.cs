@@ -6,16 +6,25 @@ using BookApp.Web.Models.Student;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using BookApp.Web.Models.Department;
+using System.Collections.Generic;
+using BookApp.Entities;
+using static System.Net.Mime.MediaTypeNames;
+using BookApp.Departments;
 
 namespace BookApp.Web.Controllers.Student
 {
     public class StudentController : BookAppControllerBase
     {
         private readonly IStudentAppService _studentAppService;
+        private readonly IDepartmentAppService _departmentAppService;
 
-        public StudentController(IStudentAppService studentAppService)
+        public StudentController(IStudentAppService studentAppService, IDepartmentAppService departmentAppService)
         {
             _studentAppService = studentAppService;
+            _departmentAppService = departmentAppService;
+
         }
 
 
@@ -33,7 +42,8 @@ namespace BookApp.Web.Controllers.Student
         public async Task<IActionResult> Create(int id)
         {
             var model = new CreateStudentViewModel();
-
+            var departments = await _departmentAppService.GetAllDepartments();
+            ViewBag.Departments = departments;
             if (id != 0)
             {
                 var student = await _studentAppService.GetAsync(new EntityDto<int>(id));
@@ -44,13 +54,30 @@ namespace BookApp.Web.Controllers.Student
                     StudentEmail = student.StudentEmail,
                     StudentDepartment = student.StudentDepartment,
                     Id = id
-                };                
-
-
+                };
             }
+
+
             return View(model);
         }
-           
-    }
 
+        //public IActionResult AddDepart()
+        //{
+        //    DepartmentListViewModel depart = new DepartmentListViewModel
+        //    {
+        //        Department = new List<SelectListItem>
+        //        {
+        //            new SelectListItem { Value = "1", Text = "College of Nursing" },
+        //            new SelectListItem { Value = "2", Text = "College of Engineering" },
+        //            new SelectListItem { Value = "3", Text = "College of Computer Science" },
+        //            new SelectListItem { Value = "4", Text = "College of Education" },
+        //            new SelectListItem { Value = "5", Text = "College of Business and Accountancy" }
+        //        }
+        //    };
+
+        //    return View(depart);
+        //}
+
+    }
 }
+     

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using BookApp.Departments.Dto;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookApp.Web.Models.Student
 {
@@ -13,5 +15,8 @@ namespace BookApp.Web.Models.Student
         public string StudentEmail { get; set; }
         [Required]
         public string StudentDepartment { get; set; }
+        public List<DepartmentDto> ListDepartments { get; set; }
+
+       
     }
 }

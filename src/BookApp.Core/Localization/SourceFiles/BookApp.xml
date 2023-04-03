@@ -119,5 +119,6 @@
 	  <text name="UsersActivation">Users activation</text>
 	  <text name="Book">Book</text>
 	  <text name="Student">Student</text>
+	  <text name="Department">Department</text>
   </texts>
 </localizationDictionary>

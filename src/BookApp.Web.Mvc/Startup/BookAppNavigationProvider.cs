@@ -15,10 +15,19 @@ namespace BookApp.Web.Startup
             context.Manager.MainMenu
                 .AddItem(
                     new MenuItemDefinition(
+                        PageNames.Home,
+                        L("HomePage"),
+                        url: "",
+                        icon: "fas fa-home",
+                        requiresAuthentication: true
+                    )
+                )
+                .AddItem(
+                    new MenuItemDefinition(
                         PageNames.Book,
                         L("Book"),
                         url: "Book",
-                        icon: "fas fa-info-circle",
+                        icon: "fa fa-book",
                         requiresAuthentication: true
                     )
                 )
@@ -27,7 +36,16 @@ namespace BookApp.Web.Startup
                         PageNames.Student,
                         L("Student"),
                         url: "Student",
-                        icon: "fas fa-info-circle",
+                        icon: "fa fa-user",
+                        requiresAuthentication: true
+                    )
+                )
+                .AddItem(
+                    new MenuItemDefinition(
+                        PageNames.Department,
+                        L("Department"),
+                        url: "Department",
+                        icon: "fa fa-sitemap",
                         requiresAuthentication: true
                     )
                 )
@@ -40,14 +58,6 @@ namespace BookApp.Web.Startup
                     )
                 )
                 .AddItem(
-                    new MenuItemDefinition(
-                        PageNames.Home,
-                        L("HomePage"),
-                        url: "",
-                        icon: "fas fa-home",
-                        requiresAuthentication: true
-                    )
-                ).AddItem(
                     new MenuItemDefinition(
                         PageNames.Tenants,
                         L("Tenants"),
