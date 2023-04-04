@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookApp.Entities;
+using BookApp.Departments.Dto;
 
 namespace BookApp.Students.Dto
 {
@@ -18,6 +19,7 @@ namespace BookApp.Students.Dto
         public string StudentName { get; set; }
         public string StudentContactNumber { get; set; }
         public string StudentEmail { get; set; }
-        public string StudentDepartment { get; set; }
+        public int StudentDepartmentId { get; set; }
+        public DepartmentDto StudentDepartment { get; set; }
     }
 }

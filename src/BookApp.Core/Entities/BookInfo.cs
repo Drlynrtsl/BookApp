@@ -18,6 +18,12 @@ namespace BookApp.Entities
         public string BookPublisher { get; set; }
 
         [Required]
-        public string BookAuthor { get; set; }  
+        public string BookAuthor { get; set; }
+
+        //[Required]
+        //public DateTime BookYear { get; set; }
+
+        //[Required]
+        //public DateTime BookPublished { get; set; }
     }
 }

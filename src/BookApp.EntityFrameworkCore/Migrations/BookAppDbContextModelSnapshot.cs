@@ -1576,6 +1576,63 @@ namespace BookApp.Migrations
                     b.ToTable("Book");
                 });
 
+            modelBuilder.Entity("BookApp.Entities.Borrow", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("BookIdId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("BookNameId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("BorrowDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsBorrow")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("ReturnDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("StudentIdId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookIdId");
+
+                    b.HasIndex("BookNameId");
+
+                    b.HasIndex("StudentIdId");
+
+                    b.ToTable("Borrows");
+                });
+
             modelBuilder.Entity("BookApp.Entities.Department", b =>
                 {
                     b.Property<int>("Id")
@@ -1941,6 +1998,27 @@ namespace BookApp.Migrations
                     b.Navigation("DeleterUser");
 
                     b.Navigation("LastModifierUser");
+                });
+
+            modelBuilder.Entity("BookApp.Entities.Borrow", b =>
+                {
+                    b.HasOne("BookApp.Entities.BookInfo", "BookId")
+                        .WithMany()
+                        .HasForeignKey("BookIdId");
+
+                    b.HasOne("BookApp.Entities.BookInfo", "BookName")
+                        .WithMany()
+                        .HasForeignKey("BookNameId");
+
+                    b.HasOne("BookApp.Entities.Student", "StudentId")
+                        .WithMany()
+                        .HasForeignKey("StudentIdId");
+
+                    b.Navigation("BookId");
+
+                    b.Navigation("BookName");
+
+                    b.Navigation("StudentId");
                 });
 
             modelBuilder.Entity("BookApp.Entities.Student", b =>

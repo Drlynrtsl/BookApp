@@ -16,7 +16,9 @@ namespace BookApp.Entities
         public string StudentContactNumber { get; set; }
         [Required]
         public string StudentEmail { get; set; }
-        [Required]
+        
+        public int? StudentDepartmentId { get; set; }
         public Department StudentDepartment { get; set; }
+
     }
 }

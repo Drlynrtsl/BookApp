@@ -1,9 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
-using BookApp.Books;
 using BookApp.Controllers;
 using BookApp.Departments;
 using BookApp.Departments.Dto;
-using BookApp.Entities;
 using BookApp.Web.Models.Department;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -49,5 +47,24 @@ namespace BookApp.Web.Controllers.Department
 
             return View(model);
         }
+
+        //[HttpPost]
+
+        //public async Task <IActionResult> Update(int id)
+        //{
+        //    var model = new CreateDepartmentViewModel();
+
+        //    if (id != 0)
+        //    {
+        //        var department = await _departmentAppService.GetAsync(new EntityDto<int>(id));
+        //        model = new CreateDepartmentViewModel()
+        //        {
+        //            Name = department.Name,
+        //            Id = id
+        //        };
+        //    }
+
+        //    return View(model);
+        //}
     }
 }

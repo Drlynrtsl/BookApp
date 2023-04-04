@@ -8,6 +8,8 @@
             return;
         }
         var student = _$form.serializeFormToObject();
+        student.StudentDepartmentId = parseInt(student.StudentDepartmentId);
+        //$('#StudentDepartmentId').val($('#StudentDepartment_StudentDepartmentId').find(":selected").val())
         abp.ui.setBusy(_$form);
         if (student.Id != 0) {
             _studentAppService.update(student).done(function () {

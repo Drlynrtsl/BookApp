@@ -6,11 +6,6 @@ using BookApp.Web.Models.Student;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using BookApp.Web.Models.Department;
-using System.Collections.Generic;
-using BookApp.Entities;
-using static System.Net.Mime.MediaTypeNames;
 using BookApp.Departments;
 
 namespace BookApp.Web.Controllers.Student
@@ -43,7 +38,8 @@ namespace BookApp.Web.Controllers.Student
         {
             var model = new CreateStudentViewModel();
             var departments = await _departmentAppService.GetAllDepartments();
-            ViewBag.Departments = departments;
+            //ViewBag.Departments = departments;
+
             if (id != 0)
             {
                 var student = await _studentAppService.GetAsync(new EntityDto<int>(id));
@@ -52,14 +48,37 @@ namespace BookApp.Web.Controllers.Student
                     StudentName = student.StudentName,
                     StudentContactNumber = student.StudentContactNumber,
                     StudentEmail = student.StudentEmail,
-                    StudentDepartment = student.StudentDepartment,
+                    StudentDepartmentId = student.StudentDepartmentId,
                     Id = id
                 };
             }
 
+            model.ListDepartments = departments;
+            //ViewBag.model = departments;
 
             return View(model);
         }
+
+        //[HttpPost]
+
+        //public async Task<IActionResult> Update(int id)
+        //{
+        //    var model = new CreateStudentViewModel();
+        //    if (id != 0)
+        //    {
+        //        var student = await _studentAppService.GetAsync(new EntityDto<int>(id));
+        //        model = new CreateStudentViewModel()
+        //        {
+        //            StudentName = student.StudentName,
+        //            StudentContactNumber = student.StudentContactNumber,
+        //            StudentEmail = student.StudentEmail,
+        //            StudentDepartment = student.StudentDepartment,
+        //            Id = id
+        //        };
+        //    }
+
+        //    return View(model);
+        //}
 
         //public IActionResult AddDepart()
         //{

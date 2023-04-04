@@ -11,5 +11,7 @@ namespace BookApp.Web.Models.Book
         public string BookAuthor { get; set; }
         [Required]
         public string BookPublisher { get; set; }
+        //public DateTime BookYear { get; set; } 
+        //public DateTime BookPublished { get; set; }
     }
 }

@@ -50,7 +50,7 @@
                                 <td>@students.StudentName</td>
                                 <td>@students.StudentContactNumber</td>
                                 <td>@students.StudentEmail</td>
-                                <td>@students.StudentDepartment</td>
+                                <td>@students.StudentDepartment?.Name</td>
                                 <td>
                                     <a href="/Student/Create/@students.Id" type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
                                         <i class="fas fa-pencil-alt"></i> Update

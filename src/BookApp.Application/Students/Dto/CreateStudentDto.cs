@@ -1,4 +1,5 @@
 ﻿using Abp.AutoMapper;
+using BookApp.Departments.Dto;
 using BookApp.Entities;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,6 @@ namespace BookApp.Students.Dto
         [Required]
         public string StudentEmail { get; set; }
         [Required]
-        public Department StudentDepartment { get; set; }
+        public int StudentDepartmentId { get; set; }
     }
 }

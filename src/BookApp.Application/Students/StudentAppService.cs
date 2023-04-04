@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using BookApp.Departments.Dto;
 
 namespace BookApp.Students
 {
@@ -23,15 +25,16 @@ namespace BookApp.Students
         {
             return base.CreateAsync(input);
         }
-
+         
         public override Task DeleteAsync(EntityDto<int> input)
         {
             return base.DeleteAsync(input);
         }
 
-        public override Task<PagedResultDto<StudentDto>> GetAllAsync(PagedStudentResultRequestDto input)
+        public async Task<PagedResultDto<StudentDto>> GetAllAsync(PagedStudentResultRequestDto input)
         {
-            return base.GetAllAsync(input);
+            var query = await _repository.GetAll().Include(x => x.StudentDepartment).Select(x => ObjectMapper.Map<StudentDto>(x)).ToListAsync();
+            return new PagedResultDto<StudentDto>(query.Count(), query);
         }
 
 
