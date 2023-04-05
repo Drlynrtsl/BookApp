@@ -35,7 +35,7 @@
                             <div class="form-group row required" style="text-align: center">
                                 <label class="col-md-3 col-form-label">Contact Number</label><br>
                                 <div class="col-md-9">
-                                    <input type="tel" name="StudentContactNumber" id="StudentContactNumber" value="@Model?.StudentContactNumber" class="form-control" placeholder="Contact Number" required maxlength="32" minlength="2">
+                                    <input type="number" name="StudentContactNumber" id="StudentContactNumber" value="@Model?.StudentContactNumber" class="form-control" placeholder="Contact Number" required maxlength="32" minlength="2">
                                 </div>
                             </div>
                             <div class="form-group row required text-align: center">
@@ -46,23 +46,9 @@
                             </div>
                             <div class="form-group row required text-align: center">
                                 <label class="col-md-3 col-form-label">Department</label><br>
-                                @*<div class="dropdown pull-right drp-actions" data-toggle="dropdown">
-                                  @*  <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="departmentsDrp" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Select Departments
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="departmentsDrp">
-                                        @foreach (var item in ViewBag.Departments)
-                                        {
-                                            <li><a class="dropdown-item" id="@item.Id">@item.Name</a></li>
-                                        }
-                                        </ul>
-                                    </div>
-                                    
-
-                                </div>*@
-                                @Html.DropDownListFor(m => m.StudentDepartmentId, Model.ListDepartments.Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.Name}), "--Select Department--", new { @class = "form-control"})
-                                @*<input type="hidden" id="StudentDepartmentId" name="StudentDepartmentId" />*@
+                                <div class="col-md-9">
+                                    @Html.DropDownListFor(m => m.StudentDepartmentId, Model.ListDepartments.Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.Name}), "--Select Department--", new { @class = "form-control"})
+                                </div>
                             </div>
                         </div>
                     </div>

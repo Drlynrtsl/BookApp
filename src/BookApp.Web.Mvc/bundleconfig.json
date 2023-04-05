@@ -190,5 +190,17 @@
     "inputFiles": [
       "wwwroot/view-resources/Views/Department/Create.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Borrow/Create.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Borrow/Create.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Borrow/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Borrow/Index.js"
+    ]
   }
 ]

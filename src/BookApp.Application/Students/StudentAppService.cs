@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using BookApp.Departments.Dto;
+using BookApp.Books.Dto;
 
 namespace BookApp.Students
 {
@@ -31,13 +32,16 @@ namespace BookApp.Students
             return base.DeleteAsync(input);
         }
 
+        public async Task<List<StudentDto>> GetAllStudents()
+        {
+            var query = await _repository.GetAll().Select(x => ObjectMapper.Map<StudentDto>(x)).ToListAsync();
+            return query;
+        }
         public async Task<PagedResultDto<StudentDto>> GetAllAsync(PagedStudentResultRequestDto input)
         {
             var query = await _repository.GetAll().Include(x => x.StudentDepartment).Select(x => ObjectMapper.Map<StudentDto>(x)).ToListAsync();
             return new PagedResultDto<StudentDto>(query.Count(), query);
         }
-
-
 
         public override Task<StudentDto> GetAsync(EntityDto<int> input)
         {

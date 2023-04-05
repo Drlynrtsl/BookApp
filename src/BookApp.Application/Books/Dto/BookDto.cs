@@ -2,11 +2,6 @@
 using Abp.AutoMapper;
 using BookApp.Entities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookApp.Books.Dto
 {
@@ -17,5 +12,7 @@ namespace BookApp.Books.Dto
         public string BookTitle { get; set; }
         public string BookPublisher { get; set; }
         public string BookAuthor { get; set; }
+        public bool IsBorrowed { get; set; }
+        public DateTime ReturnDate {get; set; }
     }
 }

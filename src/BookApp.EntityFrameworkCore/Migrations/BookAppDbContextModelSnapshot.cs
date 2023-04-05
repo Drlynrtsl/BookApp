@@ -1583,10 +1583,7 @@ namespace BookApp.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("BookIdId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("BookNameId")
+                    b.Property<int?>("BookId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("BorrowDate")
@@ -1604,7 +1601,10 @@ namespace BookApp.Migrations
                     b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsBorrow")
+                    b.Property<DateTime>("ExpectedReturnDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsBorrowed")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
@@ -1619,16 +1619,14 @@ namespace BookApp.Migrations
                     b.Property<DateTime>("ReturnDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("StudentIdId")
+                    b.Property<int?>("StudentId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BookIdId");
+                    b.HasIndex("BookId");
 
-                    b.HasIndex("BookNameId");
-
-                    b.HasIndex("StudentIdId");
+                    b.HasIndex("StudentId");
 
                     b.ToTable("Borrows");
                 });
@@ -2002,23 +2000,17 @@ namespace BookApp.Migrations
 
             modelBuilder.Entity("BookApp.Entities.Borrow", b =>
                 {
-                    b.HasOne("BookApp.Entities.BookInfo", "BookId")
+                    b.HasOne("BookApp.Entities.BookInfo", "Book")
                         .WithMany()
-                        .HasForeignKey("BookIdId");
+                        .HasForeignKey("BookId");
 
-                    b.HasOne("BookApp.Entities.BookInfo", "BookName")
+                    b.HasOne("BookApp.Entities.Student", "Student")
                         .WithMany()
-                        .HasForeignKey("BookNameId");
+                        .HasForeignKey("StudentId");
 
-                    b.HasOne("BookApp.Entities.Student", "StudentId")
-                        .WithMany()
-                        .HasForeignKey("StudentIdId");
+                    b.Navigation("Book");
 
-                    b.Navigation("BookId");
-
-                    b.Navigation("BookName");
-
-                    b.Navigation("StudentId");
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("BookApp.Entities.Student", b =>

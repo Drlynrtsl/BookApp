@@ -1621,8 +1621,6 @@ namespace BookApp.Migrations
                     b.Property<DateTime>("ReturnDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("StudentIdId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -1630,7 +1628,6 @@ namespace BookApp.Migrations
 
                     b.HasIndex("BookNameId");
 
-                    b.HasIndex("StudentIdId");
 
                     b.ToTable("Borrows");
                 });
@@ -2012,15 +2009,11 @@ namespace BookApp.Migrations
                         .WithMany()
                         .HasForeignKey("BookNameId");
 
-                    b.HasOne("BookApp.Entities.Student", "StudentId")
-                        .WithMany()
-                        .HasForeignKey("StudentIdId");
 
                     b.Navigation("BookId");
 
                     b.Navigation("BookName");
 
-                    b.Navigation("StudentId");
                 });
 
             modelBuilder.Entity("BookApp.Entities.Student", b =>

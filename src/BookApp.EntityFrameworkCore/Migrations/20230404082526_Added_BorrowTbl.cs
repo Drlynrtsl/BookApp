@@ -18,7 +18,6 @@ namespace BookApp.Migrations
                     IsBorrow = table.Column<bool>(type: "bit", nullable: false),
                     BookNameId = table.Column<int>(type: "int", nullable: true),
                     BookIdId = table.Column<int>(type: "int", nullable: true),
-                    StudentIdId = table.Column<int>(type: "int", nullable: true),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
                     LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -42,12 +41,6 @@ namespace BookApp.Migrations
                         principalTable: "Book",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Borrows_Students_StudentIdId",
-                        column: x => x.StudentIdId,
-                        principalTable: "Students",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -59,11 +52,6 @@ namespace BookApp.Migrations
                 name: "IX_Borrows_BookNameId",
                 table: "Borrows",
                 column: "BookNameId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Borrows_StudentIdId",
-                table: "Borrows",
-                column: "StudentIdId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

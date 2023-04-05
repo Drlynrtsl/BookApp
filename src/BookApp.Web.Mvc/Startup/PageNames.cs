@@ -10,5 +10,6 @@
         public const string Book = "Book";
         public const string Student = "Student";
         public const string Department = "Department";
+        public const string Borrow = "Borrow";
     }
 }

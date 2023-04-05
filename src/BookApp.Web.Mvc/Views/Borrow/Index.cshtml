@@ -1,0 +1,77 @@
+﻿@using BookApp.Web.Models.Borrow
+@using BookApp.Web.Startup
+@using BookApp.Web.Host.Controllers
+@using BookApp.Web.Models.Common.Modals
+@model BorrowListViewModel 
+@{
+    ViewBag.Title = L("Borrow");
+    ViewBag.CurrentPageName = PageNames.Borrow;
+}
+
+@section scripts
+    {
+    <environment names="Development">
+        <script src="~/view-resources/Views/Borrow/Index.js" asp-append-version="true"></script>
+    </environment>
+}
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <a href="/Borrow/Create" class="save-button btn bg-blue float-sm-right" type="button">
+                        <i class="fas fa-plus"> </i> 
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table id="BookTable" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Borrow ID</th>
+                                    <th>Borrow Date</th>
+                                    <th>Expected Return Date</th>
+                                    <th>Availability</th>
+                                    <th>Return Date</th>
+                                    <th>Book ID</th>
+                                    <th>Book Name</th>
+                                    <th>Student ID</th>
+                                    <th>Student Name</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                        @foreach (var borrows in Model.Borrows)
+                        {
+                            <tr>
+                                <td>@borrows.Id</td>
+                                <td>@borrows.BorrowDate</td>
+                                <td>@borrows.ExpectedReturnDate</td>
+                                <td>@borrows.IsBorrowed</td>
+                                <td>@borrows.ReturnDate</td>
+                                <td>@borrows.Book?.Id</td>
+                                <td>@borrows.Book?.BookTitle</td>
+                                <td>@borrows.Student?.Id</td>
+                                <td>@borrows.Student?.StudentName</td>
+                                <td>
+                                    <a href="/Borrow/Create/@borrows.Id" type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
+                                        <i class="fas fa-pencil-alt"></i> Update
+                                    </a>
+                                    <button type="button" class="delete-button btn btn-sm bg-danger" name="Delete" borrow-id="@borrows.Id">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

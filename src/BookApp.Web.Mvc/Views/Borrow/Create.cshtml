@@ -1,0 +1,79 @@
+﻿@using BookApp.Web.Models.Borrow
+@using BookApp.Web.Startup
+@using BookApp.Web.Host.Controllers
+@using BookApp.Web.Models.Common.Modals
+@model CreateBorrowViewModel
+@{
+    ViewBag.Title = L("Borrow");
+    ViewBag.CurrentPageName = PageNames.Borrow;
+}
+@section scripts{
+    <environment names="Development">
+        <script src="~/view-resources/Views/Borrow/Create.js" asp-append-version="true"></script>
+    </environment>
+}
+
+    <body>
+        <div class="bg-opacity-5 py-2" id="form">
+            <form style="text-align: center" name="BorrowInformationForm" role="form" class="form-validation form-horizontal">
+                <div class="container">
+                    <h3 class="col-md-10">Borrow Book Information Form</h3><br>
+                </div>
+                <input type="hidden" name="Id" value="@Model?.Id" class="form-control">
+                <div class="row">
+                    <div class="col-md-9 mb-10">
+                        <div role="tabpanel" class="tab-pane container active">
+                            <div class="form-group row required" style="text-align: center">
+                                <label class="col-md-3 col-form-label">Borrow Date</label><br>
+                                <div class="col-md-9">
+                                    <input type="date" name="BorrowDate" id="BorrowDate" value="@Model?.BorrowDate" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row required" style="text-align: center">
+                                <label class="col-md-3 col-form-label">Expected Return Date</label><br>
+                                <div class="col-md-9">
+                                    <input type="date" name="ExpectedReturnDate" id="ExpectedReturnDate" value="@Model?.ExpectedReturnDate" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row required">
+                                <label class="col-md-3 col-form-label">Is Borrowed</label>
+                                <div class="col-md-1">
+                                    <input type="checkbox" name="IsBorrowed" value="true" @(Model.IsBorrowed ? "checked" : "" ) id="IsBorrowed" checked />
+                                </div>
+                            </div>
+                            @*<div class="form-group row" style="text-align: center">
+                                <label class="col-md-3 col-form-label">Book ID</label><br>
+                                <div class="col-md-9">
+                                    <input type="text" readonly name="BookId" id="BookId" value="@Model?.BookId" class="form-control" placeholder="BookId">
+                                </div>
+                            </div>*@
+                            <div class="form-group row required text-align: center">
+                                <label class="col-md-3 col-form-label">Book Title</label><br>
+                                <div class="col-md-9">
+                                    @Html.DropDownListFor(m => m.BookTitle, Model.ListBooks.Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.BookTitle}), "--Select Book--", new { @class = "form-control"})
+                                </div>
+                            </div>
+                            @*<div class="form-group row" style="text-align: center">
+                                <label class="col-md-3 col-form-label">Student ID</label><br>
+                                <div class="col-md-9">
+                                    <input type="text" readonly name="StudentId" id="StudentId" value="@Model?.StudentId" class="form-control" placeholder="StudentId">
+                                </div>
+                            </div>*@
+                            <div class="form-group row required text-align: center">
+                                <label class="col-md-3 col-form-label">Student Name</label><br>
+                                <div class="col-md-9">
+                                    @Html.DropDownListFor(m => m.StudentName, Model.ListStudents.Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.StudentName}), "--Select Student--", new { @class = "form-control"})
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row modal-footer justify-content-between">
+                    <div class="col-md-9 mb-10">
+                        <button type="button" class="back-button btn btn-default" name="Back">Back</button>
+                        <button type="submit" class="save-button btn btn-primary" name="Create">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>

@@ -50,6 +50,15 @@ namespace BookApp.Web.Startup
                     )
                 )
                 .AddItem(
+                new MenuItemDefinition(
+                    PageNames.Borrow,
+                    L("Borrow"),
+                    url: "Borrow",
+                    icon: "fa fa-bookmark",
+                    requiresAuthentication: true
+                )
+            )
+                .AddItem(
                     new MenuItemDefinition(
                         PageNames.About,
                         L("About"),

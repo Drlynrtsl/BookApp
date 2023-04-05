@@ -41,11 +41,5 @@
             e.preventDefault();
             cancel();
         });
-    _$form.closest('div#form')
-        .find(".delete-button")
-        .click(function (e) {
-            e.preventDefault();
-            deleteId();
-        });
 })(jQuery);
 
