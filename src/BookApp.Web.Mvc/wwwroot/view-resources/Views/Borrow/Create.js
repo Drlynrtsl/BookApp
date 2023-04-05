@@ -10,10 +10,10 @@
         var borrow = _$form.serializeFormToObject();
         //borrow.BookId = parseInt($(this).attr("borrow-book"));
         //borrow.StudentId = parseInt($(this).attr("borrow-student"));
-        BookId = parseInt(borrow.BookId);
-        BookTitle = parseInt(borrow.BookTitle);
-        StudentId = parseInt(borrow.StudentId);
-        StudentName = parseInt(borrow.StudentName);
+        borrow.BookId = parseInt(borrow.BookId);
+        borrow.BookTitle = parseInt(borrow.BookTitle);
+        borrow.StudentId = parseInt(borrow.StudentId);
+        borrow.StudentName = parseInt(borrow.StudentName);
         /*borrow.Student = parseInt($(this).attr("borrow-student"));*/
         abp.ui.setBusy(_$form);
         if (borrow.Id != 0) {
