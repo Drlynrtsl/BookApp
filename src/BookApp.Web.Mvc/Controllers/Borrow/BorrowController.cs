@@ -38,7 +38,7 @@ namespace BookApp.Web.Controllers.Borrow
             };
             return View(model);
         }
-
+        [HttpGet]
         public async Task<IActionResult> Create(int id)
         {
             var model = new CreateBorrowViewModel();
@@ -69,5 +69,37 @@ namespace BookApp.Web.Controllers.Borrow
 
             return View(model);
         }
+
+        //[HttpGet]
+        //public async Task <IActionResult> Return(int id)
+        //{
+        //    var model = new ReturnBorrowListViewModel();
+        //    var books = await _bookAppService.GetAllBooks(); //bookID
+        //    var students = await _studentAppService.GetAllStudents(); //studentID
+        //                                                              //ViewBag.Departments = departments;
+
+        //    if (id != 0)
+        //    {
+        //        var borrow = await _borrowAppService.GetAsync(new EntityDto<int>(id));
+        //        model = new ReturnBorrowListViewModel()
+        //        {
+        //            BorrowDate = borrow.BorrowDate,
+        //            ExpectedReturnDate = borrow.ExpectedReturnDate,
+        //            IsBorrowed = borrow.IsBorrowed,
+        //            ReturnDate = borrow.ReturnDate,
+        //            BookId = borrow.BookId,
+        //            BookTitle = borrow.BookTitle,
+        //            StudentId = borrow.StudentId,
+        //            StudentName = borrow.StudentName,
+        //            Id = id
+        //        };
+        //    }
+
+        //    model.ListBooks = books;
+        //    model.ListStudents = students;
+        //    //ViewBag.model = departments;
+
+        //    return View(model);
+        //}
     }
 }

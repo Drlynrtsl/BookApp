@@ -1,4 +1,5 @@
-﻿using BookApp.Entities;
+﻿using Abp.AutoMapper;
+using BookApp.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace BookApp.Borrows.Dto
 {
+    [AutoMapTo(typeof(Borrow))]
     public class CreateBorrowDto
     {
         [Required]
@@ -16,11 +18,10 @@ namespace BookApp.Borrows.Dto
         public DateTime ExpectedReturnDate { get; set; }
         [Required]
         public bool IsBorrowed { get; set; }
-        [Required]
-        public DateTime ReturnDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
         public int BookId { get; set; }
         public string BookTitle { get; set; }
         public int StudentId { get; set; }
-        public int StudentName { get; set; }
+        public string StudentName { get; set; }
     }
 }

@@ -3,18 +3,27 @@
     var _$form = $('form[name=BorrowInformationForm]');
     var _indexPage = "/Borrow";
 
+    //$(document).ready(function () {
+    //    $('.datepicker').datepicker({
+    //        dateFormat: "MM/dd/yyy"
+    //    });
+    //});
+
+    $(document).on('click', '.datepicker', function () {
+        $('.datepicker').datepicker({
+            dateFormat: "MM/dd/yyy"
+        });
+    });
+
     function save() {
         if (!_$form.valid()) {
             return;
         }
         var borrow = _$form.serializeFormToObject();
-        //borrow.BookId = parseInt($(this).attr("borrow-book"));
-        //borrow.StudentId = parseInt($(this).attr("borrow-student"));
         borrow.BookId = parseInt(borrow.BookId);
-        borrow.BookTitle = parseInt(borrow.BookTitle);
         borrow.StudentId = parseInt(borrow.StudentId);
-        borrow.StudentName = parseInt(borrow.StudentName);
-        /*borrow.Student = parseInt($(this).attr("borrow-student"));*/
+        //borrow.BorrowDate = parseDate(borrow.BorrowDate);
+        //borrow.ExpectedDate = parseDate(borrow.ExpectedDate);
         abp.ui.setBusy(_$form);
         if (borrow.Id != 0) {
             _borrowAppService.update(borrow).done(function () {
@@ -30,7 +39,6 @@
             });
         }
     }
-
 
     function cancel() {
         window.location.href = _indexPage;

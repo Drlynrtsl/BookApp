@@ -27,6 +27,7 @@
             });
     }
 
+
     function update() {
         window.location.href = "/Borrow/Create/@borrows.Id";
     }
@@ -35,6 +36,12 @@
         .click(function (e) {
             e.preventDefault();
             cancel();
+        });
+    _$form.closest('div#form')
+        .find(".return-button")
+        .click(function (e) {
+            e.preventDefault();
+            update();
         });
 })(jQuery);
 

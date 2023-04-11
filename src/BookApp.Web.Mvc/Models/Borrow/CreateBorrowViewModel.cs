@@ -17,14 +17,13 @@ namespace BookApp.Web.Models.Borrow
         public DateTime ExpectedReturnDate { get; set; }
         [Required]
         public bool IsBorrowed { get; set; }
-        [Required]
-        public DateTime ReturnDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
         public int BookId { get; set; }
         public string BookTitle { get; set; }
         public List<BookDto> ListBooks { get; set; }
         //public Student Student { get; set; }
         public int StudentId  { get; set; }
-        public int StudentName { get; set; }
+        public string StudentName { get; set; }
         public List<StudentDto> ListStudents { get; set; }
     }
 }

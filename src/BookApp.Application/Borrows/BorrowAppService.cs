@@ -29,16 +29,27 @@ namespace BookApp.Borrows
 
         public async Task<PagedResultDto<BorrowDto>> GetAllAsync(PagedBorrowResultRequestDto input)
         {
-            var query = await _repository.GetAll().Include(x => x.Book).Select(x => ObjectMapper.Map<BorrowDto>(x)).ToListAsync();
+            var query = await _repository.GetAll()
+                .Include(x => x.Book)
+                .Include(x => x.Student)
+                //.ThenInclude(x => x.StudentDepartment)
+                .Select(x => ObjectMapper.Map<BorrowDto>(x))
+                .ToListAsync();
             return new PagedResultDto<BorrowDto>(query.Count(), query);
-
-            //var query2 = await _repository.GetAll().Include(x => x.Student).Select(x => ObjectMapper.Map<BorrowDto>(x)).ToListAsync();
-            //return new PagedResultDto<BorrowDto>(query2.Count(), query2);
         }
 
         public override Task<BorrowDto> CreateAsync(CreateBorrowDto input)
         {
-            return base.CreateAsync(input);
+            try
+            {
+                return base.CreateAsync(input);
+
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
         }
 
         public override Task DeleteAsync(EntityDto<int> input)

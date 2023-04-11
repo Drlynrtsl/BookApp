@@ -202,5 +202,11 @@
     "inputFiles": [
       "wwwroot/view-resources/Views/Borrow/Index.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Borrow/Return.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Borrow/Return.js"
+    ]
   }
 ]
