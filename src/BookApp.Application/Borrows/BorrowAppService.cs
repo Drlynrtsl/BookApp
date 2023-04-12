@@ -30,6 +30,7 @@ namespace BookApp.Borrows
         public async Task<PagedResultDto<BorrowDto>> GetAllAsync(PagedBorrowResultRequestDto input)
         {
             var query = await _repository.GetAll()
+                
                 .Include(x => x.Book)
                 .Include(x => x.Student)
                 //.ThenInclude(x => x.StudentDepartment)

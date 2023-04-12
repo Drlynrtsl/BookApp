@@ -15,12 +15,13 @@
     </environment>
 }
 
+
     <section class="content-header">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
                     <a href="/Borrow/Create" class="save-button btn bg-blue float-sm-right" type="button">
-                        <i class="fas fa-plus"> </i> 
+                        <i class="fas fa-plus">Add Borrower</i> 
                     </a>
                 </div>
             </div>
@@ -47,8 +48,8 @@
                         @foreach (var borrows in Model.Borrows)
                         {
                             <tr>
-                                <td>@borrows.BorrowDate.ToString("MM-dd-yyyy")</td>
-                                <td>@borrows.ExpectedReturnDate.ToString("MM-dd-yyyy")</td>
+                                <td>@borrows.BorrowDate.ToString("yyyy-MM-dd")</td>
+                                <td>@borrows.ExpectedReturnDate.ToString("yyyy-MM-dd")</td>
                                 
                                 @if (borrows.IsBorrowed == true)
                                 {
@@ -58,7 +59,7 @@
                                 {
                                 <td>Returned</td>
                                 }
-                                <td>@borrows.ReturnDate?.ToString("MM-dd-yyyy")</td>
+                                <td>@borrows.ReturnDate?.ToString("yyyy-MM-dd")</td>
                                 @*<td>---</td>
                                 @if (!borrows.ReturnDate)
                                 {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Abp.Application.Services.Dto;
@@ -16,6 +17,8 @@ namespace BookApp.Roles.Dto
         [Required]
         [StringLength(AbpRoleBase.MaxDisplayNameLength)]
         public string DisplayName { get; set; }
+
+        public DateTime CreationDate { get; set; }
 
         public string NormalizedName { get; set; }
         

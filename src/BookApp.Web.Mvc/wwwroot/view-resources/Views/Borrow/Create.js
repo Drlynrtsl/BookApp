@@ -3,18 +3,6 @@
     var _$form = $('form[name=BorrowInformationForm]');
     var _indexPage = "/Borrow";
 
-    //$(document).ready(function () {
-    //    $('.datepicker').datepicker({
-    //        dateFormat: "MM/dd/yyy"
-    //    });
-    //});
-
-    $(document).on('click', '.datepicker', function () {
-        $('.datepicker').datepicker({
-            dateFormat: "MM/dd/yyy"
-        });
-    });
-
     function save() {
         if (!_$form.valid()) {
             return;
@@ -42,6 +30,10 @@
 
     function cancel() {
         window.location.href = _indexPage;
+    }
+
+    function addDay() {
+
     }
     //Handle save button click 
     _$form.closest('div#form')

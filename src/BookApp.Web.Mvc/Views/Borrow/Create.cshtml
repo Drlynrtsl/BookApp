@@ -22,67 +22,50 @@
                 <input type="hidden" name="Id" value="@Model?.Id" class="form-control">
                 <div class="row">
                     <div class="col-md-9 mb-10">
-                        <div role="tabpanel" class="tab-pane container active">                          
+                        <div role="tabpanel" class="tab-pane container active">
+                        @if(Model.IsBorrowed == true)
+                        {
                             <div class="form-group row mb-2 required" style="text-align: center">
                                 <label class="col-md-3 col-form-label">Borrow Date</label><br>
                                 <div class="col-md-9">
-                                    <input type="date" name="BorrowDate" id="BorrowDate" value="@Model?.BorrowDate" class="form-control datapicker">
+                                    <input type="date" name="BorrowDate" id="BorrowDate" value="@Model?.BorrowDate.ToString("yyyy-MM-dd")" class="form-control">
                                     @*@Html.DisplayFor(x => x.BorrowDate).ToString("MM/dd/yyyy")*@
                                 </div>
                             </div>
                             <div class="form-group row required" style="text-align: center">
                                 <label class="col-md-3 col-form-label">Expected Return Date</label><br>
                                 <div class="col-md-9">
-                                    <input type="date" name="ExpectedReturnDate" id="ExpectedReturnDate" value="@Model?.ExpectedReturnDate" class="form-control">
+                                    <input type="date" name="ExpectedReturnDate" id="ExpectedReturnDate" value="@Model?.ExpectedReturnDate.ToString("yyyy-MM-dd")" class="form-control">
                                 </div>
                             </div>
                             @*<input type="hidden" name="IsBorrowed" value="true" @(Model.IsBorrowed ? "checked" : "" ) id="IsBorrowed" checked />*@
-                            @if(Model.IsBorrowed == true)
-                            {
+                        @if (Model.IsBorrowed == true)
+                        {
                             <input type="hidden" name="IsBorrowed" value="false" @(Model.IsBorrowed ? "checked" : "" ) id="IsBorrowed" />
-                            }
-                            else
-                            {
-                            <input type="hidden" name="IsBorrowed" value="true" @(Model.IsBorrowed ? "checked" : "" ) id="IsBorrowed" checked/>
-                            }
-                            <div class="form-group row required" style="text-align: center">
-                                <label class="col-md-3 col-form-label">Return Date</label>
-                                <div class="col-md-9">
-                                <input type="date" name="ReturnDate" id="ReturnDate" value="@Model?.ReturnDate" class="form-control">
-                                </div>
+                        }
+                        else
+                        {
+                            <input type="hidden" name="IsBorrowed" value="true" @(Model.IsBorrowed ? "checked" : "" ) id="IsBorrowed" checked />
+                        }
+                        <div class="form-group row required" style="text-align: center">
+                            <label class="col-md-3 col-form-label">Return Date</label>
+                            <div class="col-md-9">
+                                <input type="date" name="ReturnDate" id="ReturnDate" value="@Model?.ReturnDate?.ToString("yyyy-MM-dd")" class="form-control">
                             </div>
-                            
-                            @*<div class="form-group row mb-2" style="text-align: center">
-                                <label class="col-md-3 col-form-label">Return Date</label><br>
-                                <div class="col-md-9">
-                                    <input type="date" readonly name="ReturnDate" id="ReturnDate" value="@Model?.ReturnDate" class="form-control">
-                                </div>
-                            </div>*@
-                            @*<div class="form-group row" style="text-align: center">
-                                <label class="col-md-3 col-form-label">Book ID</label><br>
-                                <div class="col-md-9">
-                                    <input type="text" readonly name="BookId" id="BookId" value="@Model?.BookId" class="form-control" placeholder="BookId">
-                                </div>
-                            </div>*@
-                            
+                        </div>
                         <div class="form-group row required text-align: center">
                             <label class="col-md-3 col-form-label">Book Title</label><br>
                             <div class="col-md-9">
                                 @Html.DropDownListFor(m => m.BookId, Model.ListBooks.Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.BookTitle}), "--Select Book--", new { @class = "form-control"})
                             </div>
                         </div>
-                            @*<div class="form-group row" style="text-align: center">
-                                <label class="col-md-3 col-form-label">Student ID</label><br>
-                                <div class="col-md-9">
-                                    <input type="text" readonly name="StudentId" id="StudentId" value="@Model?.StudentId" class="form-control" placeholder="StudentId">
-                                </div>
-                            </div>*@
-                            <div class="form-group row required text-align: center">
-                                <label class="col-md-3 col-form-label">Student Name</label><br>
-                                <div class="col-md-9">
-                                    @Html.DropDownListFor(m => m.StudentId, Model.ListStudents.Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.StudentName}), "--Select Student--", new { @class = "form-control"})
-                                </div>
+                        <div class="form-group row required text-align: center">
+                            <label class="col-md-3 col-form-label">Student Name</label><br>
+                            <div class="col-md-9">
+                                @Html.DropDownListFor(m => m.StudentId, Model.ListStudents.Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.StudentName}), "--Select Student--", new { @class = "form-control"})
                             </div>
+                        </div>
+                        }
                         </div>
                     </div>
                 </div>
