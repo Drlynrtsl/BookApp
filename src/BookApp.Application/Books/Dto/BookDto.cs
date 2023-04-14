@@ -13,6 +13,9 @@ namespace BookApp.Books.Dto
         public string BookPublisher { get; set; }
         public string BookAuthor { get; set; }
         public bool IsBorrowed { get; set; }
+        public int StudentId { get; set; }
+        public string StudentName { get; set; }
+        public Student Student { get; set; }
         //public DateTime ReturnDate {get; set; }
     }
 }

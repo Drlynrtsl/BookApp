@@ -21,7 +21,8 @@ namespace BookApp.Books.Dto
 
         [Required]
         public string BookAuthor { get; set; }
-
+        public int StudentId { get; set; }
+        public int StudentName { get; set; }
         //[Required]
         //public DateTime BookYear { get; set; }
 

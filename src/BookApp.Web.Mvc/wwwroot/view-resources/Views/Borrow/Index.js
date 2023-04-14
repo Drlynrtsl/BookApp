@@ -6,7 +6,7 @@
 
     $(document).on('click', '.delete-button', function () {
         var borrowId = parseInt($(this).attr("borrow-id"));
-        var borrowBookName= parseInt($(this).attr("borrow-book-name"));
+        var borrowBookName = parseInt($(this).attr("borrow-book-name"));
 
         deleteId(borrowId, borrowBookName);
     });
@@ -26,6 +26,11 @@
 
             });
     }
+    $('#BorrowDate').on('change', function () {
+        var borrowDate = new Date(document.getElementById("BorrowDate").value);
+
+        document.getElementById("ExpectedReturnDate").value = borrowDate.addDays(7);
+    })
 
 
     function update() {
@@ -44,4 +49,3 @@
             update();
         });
 })(jQuery);
-

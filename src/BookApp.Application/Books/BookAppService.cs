@@ -2,6 +2,7 @@
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using BookApp.Books.Dto;
+using BookApp.Borrows.Dto;
 using BookApp.Departments.Dto;
 using BookApp.Editions;
 using BookApp.Entities;
@@ -40,9 +41,14 @@ namespace BookApp.Books
             return base.DeleteAsync(input);
         }
 
-        public override Task<PagedResultDto<BookDto>> GetAllAsync(PagedBookResultRequestDto input)
+        public async Task<PagedResultDto<BookDto>> GetAllAsync(PagedBookResultRequestDto input)
         {
-            return base.GetAllAsync(input);
+            var query = await _repository.GetAll()
+
+            .Include(x => x.Student)
+            .Select(x => ObjectMapper.Map<BookDto>(x))
+            .ToListAsync();
+            return new PagedResultDto<BookDto>(query.Count(), query);
         }
 
 

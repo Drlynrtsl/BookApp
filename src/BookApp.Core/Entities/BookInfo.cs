@@ -16,6 +16,9 @@ namespace BookApp.Entities
         [Required]
         public string BookAuthor { get; set; }
 
+        public int? StudentId { get; set; }
+        public Student Student { get; set; }
+
         //[Required]
         //public DateTime BookYear { get; set; }
 

@@ -20,7 +20,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
-                    <a href="/Borrow/Create" class="save-button btn bg-blue float-sm-right" type="button">
+                    <a href="/Borrow/Create" onclick="addDays" class="save-button btn bg-blue float-sm-right" type="button" borrow-id="Id">
                         <i class="fas fa-plus">Add Borrower</i> 
                     </a>
                 </div>
@@ -71,14 +71,26 @@
                                 }*@
                                 <td>@borrows.Book?.BookTitle</td>
                                 <td>@borrows.Student?.StudentName</td>
-                                <td>
-                                    <a href="/Borrow/Create/@borrows.Id" type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
-                                        <i class="fas fa-pencil-alt"></i> Update
-                                    </a>
-                                    <button type="button" class="delete-button btn btn-sm bg-danger" name="Delete" borrow-id="@borrows.Id">
-                                        <i class="fas fa-trash"></i> Delete
-                                    </button>
-                                </td>
+                                @if(borrows.IsBorrowed == true && borrows.ReturnDate == null){
+                                    <td>
+                                        <a href="/Borrow/Create/@borrows.Id" type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
+                                            <i class="fas fa-pencil-alt"></i> Update
+                                        </a>
+                                        <button type="button" class="delete-button btn btn-sm bg-danger" name="Delete" borrow-id="@borrows.Id">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </button>
+                                    </td>
+                                }else
+                                {
+                                    <td>
+                                        <button location="/Borrow/Create/@borrows.Id" disabled type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
+                                            <i class="fas fa-pencil-alt"></i> Update
+                                        </button>
+                                        <button type="button" disabled class="delete-button btn btn-sm bg-danger" name="Delete" borrow-id="@borrows.Id">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </button>
+                                    </td>
+                                }
                             </tr>
                         }
                     </table>

@@ -3,9 +3,6 @@ using BookApp.Books;
 using BookApp.Borrows;
 using BookApp.Borrows.Dto;
 using BookApp.Controllers;
-using BookApp.Departments;
-using BookApp.Departments.Dto;
-using BookApp.Entities;
 using BookApp.Students;
 using BookApp.Web.Models.Borrow;
 using BookApp.Web.Models.Department;
@@ -44,6 +41,7 @@ namespace BookApp.Web.Controllers.Borrow
             var model = new CreateBorrowViewModel();
             var books = await _bookAppService.GetAllBooks(); //bookID
             var students = await _studentAppService.GetAllStudents(); //studentID
+            
             //ViewBag.Departments = departments;
 
             if (id != 0)
@@ -61,8 +59,10 @@ namespace BookApp.Web.Controllers.Borrow
                     StudentName = borrow.StudentName,
                     Id = id
                 };
+                //borrow.ExpectedReturnDate.AddDays(7);
             }
 
+            
             model.ListBooks = books;
             model.ListStudents = students;
             //ViewBag.model = departments;

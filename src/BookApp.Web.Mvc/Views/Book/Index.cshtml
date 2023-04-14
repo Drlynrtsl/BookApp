@@ -13,12 +13,7 @@
     <environment names="Development">
         <script src="~/view-resources/Views/Book/Index.js" asp-append-version="true"></script>
     </environment>
-
-    @*<environment names="Staging,Production">
-        <script src="~/view-resources/Views/Book/Book.min.js" asp-append-version="true"></script>
-    </environment>*@
     }
-
 
     <div class="card">
         <div class="card-header">
@@ -32,6 +27,7 @@
                                     <th scope="col">Book Title</th>
                                     <th scope="col">Author</th>
                                     <th scope="col">Publisher</th>
+                                    @*<th scope="col">Borrowed By</th>*@
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
@@ -42,6 +38,7 @@
                                 <td>@books.BookTitle</td>
                                 <td>@books.BookAuthor</td>
                                 <td>@books.BookPublisher</td>
+                                @*<td>@books.Student?.StudentName</td>*@
                                 <td>
                                     <a href="/Book/Create/@books.Id" type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
                                         <i class="fas fa-pencil-alt"></i> Update

@@ -2,10 +2,12 @@
 using BookApp.Books;
 using BookApp.Books.Dto;
 using BookApp.Controllers;
+using BookApp.Students;
 using BookApp.Web.Models.Book;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
+using static System.Reflection.Metadata.BlobBuilder;
 
 
 namespace BookApp.Web.Host.Controllers
@@ -13,9 +15,11 @@ namespace BookApp.Web.Host.Controllers
     public class BookController : BookAppControllerBase
     {
         private readonly IBookAppService _bookAppService;
-        public BookController(IBookAppService bookAppService)
+        private readonly IStudentAppService _studentAppService;
+        public BookController(IBookAppService bookAppService, IStudentAppService studentAppService)
         {
             _bookAppService = bookAppService;
+            _studentAppService = studentAppService;
         }
 
         [HttpGet]
@@ -28,6 +32,7 @@ namespace BookApp.Web.Host.Controllers
 
         public async Task<IActionResult> Index()
         {
+            
             var books = await _bookAppService.GetAllAsync(new PagedBookResultRequestDto { MaxResultCount = int.MaxValue });
             var model = new ListBookViewModel
             {
@@ -41,6 +46,7 @@ namespace BookApp.Web.Host.Controllers
         public async Task<IActionResult> Create(int id)
         {
             var model = new CreateBookViewModel();
+            var students = await _studentAppService.GetAllStudents();
 
             if (id != 0)
             {
@@ -50,14 +56,14 @@ namespace BookApp.Web.Host.Controllers
                     BookTitle = book.BookTitle,
                     BookAuthor = book.BookAuthor,
                     BookPublisher = book.BookPublisher,
-                    //BookYear = book.BookYear,
-                    //BookPublished = book.BookPublished,
+                    StudentId = book.StudentId,
+                    StudentName = book.StudentName,
                     Id = id
                 };
             }
 
-            
 
+            model.ListStudents = students;
             return View(model);
         }
 
