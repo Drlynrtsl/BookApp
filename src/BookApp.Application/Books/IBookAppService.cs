@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services;
+using Abp.Application.Services.Dto;
 using BookApp.Books.Dto;
 using BookApp.MultiTenancy.Dto;
 using BookApp.Students.Dto;
@@ -12,6 +13,8 @@ namespace BookApp.Books
 {
     public interface IBookAppService : IAsyncCrudAppService<BookDto, int, PagedBookResultRequestDto, CreateBookDto, BookDto>
     {
+        //Task<PagedResultDto<BookDto>> GetAllPagedBookResult(PagedBookResultRequestDto input);
         Task<List<BookDto>> GetAllBooks();
+        Task<List<BookDto>> GetAvailableBooks();
     }
 }

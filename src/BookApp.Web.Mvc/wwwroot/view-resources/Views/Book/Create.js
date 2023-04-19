@@ -8,7 +8,7 @@
             return;
         }
         var book = _$form.serializeFormToObject();
-        borrow.StudentId = parseInt(borrow.StudentId);
+        /*book.StudentId = parseInt(book.StudentId);*/
         abp.ui.setBusy(_$form);
         if (book.Id != 0) {
             _bookAppService.update(book).done(function () {
@@ -25,17 +25,17 @@
         }
     }
 
-    $(document).ready(function () {
-        $('#books').on('change', function () {
-            var Student = $('#books').Student();
-            console.log(Student);
-            if (Student == 0) {
-                $('#books').attr('disabled', true);
-            } else {
-                $('#books').attr('disabled', false);
-            }
-        })
-    })
+    //$(document).ready(function () {
+    //    $('#books').on('change', function () {
+    //        var Student = $('#books').Student();
+    //        console.log(Student);
+    //        if (Student == 0) {
+    //            $('#books').attr('disabled', true);
+    //        } else {
+    //            $('#books').attr('disabled', false);
+    //        }
+    //    })
+    //})
 
 
     function cancel() {

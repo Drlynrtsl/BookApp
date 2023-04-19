@@ -1,0 +1,52 @@
+﻿@using BookApp.Web.Startup
+@using BookApp.Web.Models.Common.Modals
+@using BookApp.Web.Models.BookCategories
+@using BookApp.Web.Host.Controllers
+@model CreateBookCategoriesViewModel
+@{
+    ViewBag.Title = L("BookCategories");
+    ViewBag.CurrentPageName = PageNames.BookCategories;
+}
+
+@section scripts
+{
+    <environment names="Development">
+        <script src="~/view-resources/Views/BookCategories/Create.js" asp-append-version="true"></script>
+    </environment>
+}
+
+    <body>
+        <div class="bg-opacity-5 py-2" id="form">
+            <form style="text-align: center" name="BookCategoryInformationForm" role="form" class="form-validation form-horizontal">
+                <div class="container">
+                    <h3 class="col-md-10">Book Categories Information Form</h3><br>
+                </div>
+                <input type="hidden" name="Id" id="Id" value="@Model?.Id" class="form-control">
+                <div class="row">
+                    <div class="col-md-9 mb-10">
+                        <div role="tabpanel" class="tab-pane container active">                           
+
+                            <div class="form-group row mb-2 required" style="text-align: center">
+                                <label class="col-md-3 col-form-label" style="text-align:right">Category Name</label><br>
+                                <div class="col-md-9">
+                                    <input type="text" name="Name" id="Name" value="@Model?.Name" class="form-control" placeholder="Name" required maxlength="255" minlength="2">
+                                </div>
+                            </div>
+                        <div class="form-group row required text-align: center">
+                            <label class="col-md-3 col-form-label" style="text-align:right">Department</label><br>
+                            <div class="col-md-9">
+                                    @Html.DropDownListFor(m => m.DepartmentId, Model.ListDepartments.Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.Name}), "--Select Department--", new { @class = "form-control bookcategories", @id="bookcategories"})
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row modal-footer justify-content-between">
+                <div class="col-md-9 mb-10">
+                    <button type="button" class="back-button btn btn-default" name="Back">Back</button>
+                    <button type="submit" class="save-button btn btn-primary" name="Create">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>

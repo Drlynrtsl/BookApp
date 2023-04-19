@@ -37,7 +37,7 @@ namespace BookApp.Students
             var query = await _repository.GetAll().Select(x => ObjectMapper.Map<StudentDto>(x)).ToListAsync();
             return query;
         }
-        public async Task<PagedResultDto<StudentDto>> GetAllAsync(PagedStudentResultRequestDto input)
+        public override async Task<PagedResultDto<StudentDto>> GetAllAsync(PagedStudentResultRequestDto input)
         {
             var query = await _repository.GetAll().Include(x => x.StudentDepartment).Select(x => ObjectMapper.Map<StudentDto>(x)).ToListAsync();
             return new PagedResultDto<StudentDto>(query.Count(), query);

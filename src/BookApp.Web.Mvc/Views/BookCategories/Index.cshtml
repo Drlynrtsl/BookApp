@@ -1,0 +1,62 @@
+﻿@using BookApp.Web.Startup
+@using BookApp.Web.Host.Controllers
+@using BookApp.Web.Models.Common.Modals
+@using BookApp.Web.Models.BookCategories
+@{
+    ViewBag.Title = L("BookCategories");
+    ViewBag.CurrentPageName = PageNames.BookCategories;
+}
+@section scripts{
+    <encironment name="Development">
+        <script src="~/view-resources/Views/BookCategories/Index.js" asp-append-version="true"></script>
+    </encironment>
+}
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <a href="/BookCategories/Create" class="save-button btn bg-blue float-sm-right" type="button" bookcategory-id="Id">
+                        <i class="fas fa-plus">Add Category</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table id="BookTable" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Category</th>
+                                    <th>Department Name</th>
+                                    <th style="width: 150px">Actions</th>
+                                </tr>
+                            </thead>
+                        @foreach (var bookcategory in Model.BookCategories)
+                        {
+                            <tr>
+                                <td>@bookcategory.Id</td>
+                                <td>@bookcategory.Name</td>
+                                <td>@bookcategory.Department?.Name</td>
+                                <td>
+                                    <a href="/BookCategories/Create/@bookcategory.Id" type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
+                                        <i class="fas fa-pencil-alt"></i> Update
+                                    </a>
+                                    <button type="button" class="delete-button btn btn-sm bg-danger" name="Delete" bookcategory-id="@bookcategory.Id">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

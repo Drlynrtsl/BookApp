@@ -20,14 +20,22 @@ namespace BookApp.Books
     public class BookAppService : AsyncCrudAppService<BookInfo, BookDto, int, PagedBookResultRequestDto, CreateBookDto, BookDto>, IBookAppService
     {
         private readonly IRepository<BookInfo, int> _repository;
-        public BookAppService(IRepository<BookInfo, int> repository) : base(repository)
+        private readonly IRepository<BookCategory, int> _bookCategoryRepository;
+        public BookAppService(IRepository<BookInfo, int> repository, IRepository<BookCategory, int> bookCategoryRepository) : base(repository)
         {
             _repository = repository;
+            _bookCategoryRepository = bookCategoryRepository;
         }
 
         public async Task<List<BookDto>> GetAllBooks()
         {
             var query = await _repository.GetAll().Select(x => ObjectMapper.Map<BookDto>(x)).ToListAsync();
+            return query;
+        }
+
+        public async Task<List<BookDto>> GetAvailableBooks()
+        {
+            var query = await _repository.GetAll().Where(x => !x.IsBorrowed).Select(x => ObjectMapper.Map<BookDto>(x)).ToListAsync();
             return query;
         }
 
@@ -41,11 +49,10 @@ namespace BookApp.Books
             return base.DeleteAsync(input);
         }
 
-        public async Task<PagedResultDto<BookDto>> GetAllAsync(PagedBookResultRequestDto input)
+        public override async Task<PagedResultDto<BookDto>> GetAllAsync(PagedBookResultRequestDto input)
         {
             var query = await _repository.GetAll()
-
-            .Include(x => x.Student)
+            .Include(x => x.BookCategories)
             .Select(x => ObjectMapper.Map<BookDto>(x))
             .ToListAsync();
             return new PagedResultDto<BookDto>(query.Count(), query);

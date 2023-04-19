@@ -16,16 +16,12 @@ namespace BookApp.Entities
         [Required]
         public string BookAuthor { get; set; }
 
-        public int? StudentId { get; set; }
-        public Student Student { get; set; }
+        [Required]
+        public bool IsBorrowed { get; set; }
 
-        //[Required]
-        //public DateTime BookYear { get; set; }
+        public int? BookCategoriesId { get; set; }
 
-        //[Required]
-        //public DateTime BookPublished { get; set; }
-
-        //public Borrow BorrowBook { get; set; }
+        public BookCategory BookCategories { get; set; }
 
     }
 }

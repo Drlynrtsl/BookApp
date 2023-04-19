@@ -21,6 +21,7 @@ namespace BookApp.EntityFrameworkCore
         public DbSet<Student> Students { get; set; }
         public DbSet<Department> Department { get; set; }
         public DbSet<Borrow> Borrows { get; set; }
+        public DbSet<BookCategory> BookCategories { get; set; }
 
     }
 }

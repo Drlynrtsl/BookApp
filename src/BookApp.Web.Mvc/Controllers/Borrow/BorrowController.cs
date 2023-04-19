@@ -1,13 +1,16 @@
 ﻿using Abp.Application.Services.Dto;
 using BookApp.Books;
+using BookApp.Books.Dto;
 using BookApp.Borrows;
 using BookApp.Borrows.Dto;
 using BookApp.Controllers;
 using BookApp.Students;
+using BookApp.Students.Dto;
 using BookApp.Web.Models.Borrow;
 using BookApp.Web.Models.Department;
 using BookApp.Web.Models.Student;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -39,27 +42,34 @@ namespace BookApp.Web.Controllers.Borrow
         public async Task<IActionResult> Create(int id)
         {
             var model = new CreateBorrowViewModel();
-            var books = await _bookAppService.GetAllBooks(); //bookID
-            var students = await _studentAppService.GetAllStudents(); //studentID
+            var books = new List<BookDto>();
+            var students = new List <StudentDto>();
             
             //ViewBag.Departments = departments;
 
-            if (id != 0)
+            if (id != 0) //Update
             {
-                var borrow = await _borrowAppService.GetAsync(new EntityDto<int>(id));
+                var borrow = await _borrowAppService.GetBorrowWithBookAndStudent(new EntityDto<int>(id));
                 model = new CreateBorrowViewModel()
                 {
                     BorrowDate = borrow.BorrowDate,
                     ExpectedReturnDate = borrow.ExpectedReturnDate,
-                    IsBorrowed = borrow.IsBorrowed,
                     ReturnDate = borrow.ReturnDate,
                     BookId = borrow.BookId,
                     BookTitle = borrow.BookTitle,
                     StudentId = borrow.StudentId,
                     StudentName = borrow.StudentName,
-                    Id = id
+                    Id = id,
+                    IsBorrowed = borrow.Book.IsBorrowed
                 };
-                //borrow.ExpectedReturnDate.AddDays(7);
+
+                books.Add(ObjectMapper.Map<BookDto>(borrow.Book));
+                students.Add(ObjectMapper.Map<StudentDto>(borrow.Student));
+            }
+             else //Create
+            {
+                books = await _bookAppService.GetAvailableBooks();
+                students = await _studentAppService.GetAllStudents();
             }
 
             

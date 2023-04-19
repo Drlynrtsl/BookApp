@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services.Dto;
+using BookApp.BookCategories;
 using BookApp.Books;
 using BookApp.Books.Dto;
 using BookApp.Controllers;
@@ -15,11 +16,11 @@ namespace BookApp.Web.Host.Controllers
     public class BookController : BookAppControllerBase
     {
         private readonly IBookAppService _bookAppService;
-        private readonly IStudentAppService _studentAppService;
-        public BookController(IBookAppService bookAppService, IStudentAppService studentAppService)
+        private readonly IBookCategoriesAppService _bookCategoriesAppService;
+        public BookController(IBookAppService bookAppService, IBookCategoriesAppService bookCategoriesAppService)
         {
             _bookAppService = bookAppService;
-            _studentAppService = studentAppService;
+            _bookCategoriesAppService = bookCategoriesAppService;
         }
 
         [HttpGet]
@@ -46,7 +47,7 @@ namespace BookApp.Web.Host.Controllers
         public async Task<IActionResult> Create(int id)
         {
             var model = new CreateBookViewModel();
-            var students = await _studentAppService.GetAllStudents();
+            var bookcategories = await _bookCategoriesAppService.GetAllBookCategories();
 
             if (id != 0)
             {
@@ -56,37 +57,18 @@ namespace BookApp.Web.Host.Controllers
                     BookTitle = book.BookTitle,
                     BookAuthor = book.BookAuthor,
                     BookPublisher = book.BookPublisher,
-                    StudentId = book.StudentId,
-                    StudentName = book.StudentName,
+                    IsBorrowed = book.IsBorrowed,
+                    BookCategoriesId = book.BookCategoriesId,
                     Id = id
                 };
             }
 
+            model.ListBookCategories = bookcategories;
 
-            model.ListStudents = students;
+
             return View(model);
         }
 
-        //[HttpPost]
-
-        //public async Task <IActionResult> Update(int id)
-        //{
-        //    var model = new CreateBookViewModel();
-
-        //    if (id != 0)
-        //    {
-        //        var book = await _bookAppService.GetAsync(new EntityDto<int>(id));
-        //        model = new CreateBookViewModel()
-        //        {
-        //            BookTitle = book.BookTitle,
-        //            BookAuthor = book.BookAuthor,
-        //            BookPublisher = book.BookPublisher,
-        //            Id = id
-        //        };
-        //    }
-
-        //    return View(model);
-        //}
     }
 
 }

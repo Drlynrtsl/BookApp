@@ -15,9 +15,7 @@ namespace BookApp.Borrows.Dto
         [Required]
         public DateTime BorrowDate { get; set; }
         [Required]
-        public DateTime ExpectedReturnDate { get; set; }
-        [Required]
-        public bool IsBorrowed { get; set; }
+        public DateTime ExpectedReturnDate { get; set; }    
         public DateTime? ReturnDate { get; set; }
         public int BookId { get; set; }
         public string BookTitle { get; set; }

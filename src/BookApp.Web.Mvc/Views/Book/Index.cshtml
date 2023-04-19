@@ -27,7 +27,8 @@
                                     <th scope="col">Book Title</th>
                                     <th scope="col">Author</th>
                                     <th scope="col">Publisher</th>
-                                    @*<th scope="col">Borrowed By</th>*@
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
@@ -38,7 +39,12 @@
                                 <td>@books.BookTitle</td>
                                 <td>@books.BookAuthor</td>
                                 <td>@books.BookPublisher</td>
-                                @*<td>@books.Student?.StudentName</td>*@
+                                <td>@books.BookCategoriesId.Name</td>
+                                @if(books.IsBorrowed){
+                                    <td>Borrowed</td>
+                                }else{
+                                    <td>Returned</td>
+                                }
                                 <td>
                                     <a href="/Book/Create/@books.Id" type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
                                         <i class="fas fa-pencil-alt"></i> Update

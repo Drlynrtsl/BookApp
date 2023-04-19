@@ -20,7 +20,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
-                    <a href="/Borrow/Create" onclick="addDays" class="save-button btn bg-blue float-sm-right" type="button" borrow-id="Id">
+                    <a href="/Borrow/Create" class="save-button btn bg-blue float-sm-right" type="button" borrow-id="Id">
                         <i class="fas fa-plus">Add Borrower</i> 
                     </a>
                 </div>
@@ -51,7 +51,7 @@
                                 <td>@borrows.BorrowDate.ToString("yyyy-MM-dd")</td>
                                 <td>@borrows.ExpectedReturnDate.ToString("yyyy-MM-dd")</td>
                                 
-                                @if (borrows.IsBorrowed == true)
+                                @if (borrows.Book.IsBorrowed)
                                 {
                                 <td>Borrowed</td>
                                 }
@@ -71,7 +71,7 @@
                                 }*@
                                 <td>@borrows.Book?.BookTitle</td>
                                 <td>@borrows.Student?.StudentName</td>
-                                @if(borrows.IsBorrowed == true && borrows.ReturnDate == null){
+                                @if(borrows.Book.IsBorrowed){
                                     <td>
                                         <a href="/Borrow/Create/@borrows.Id" type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
                                             <i class="fas fa-pencil-alt"></i> Update

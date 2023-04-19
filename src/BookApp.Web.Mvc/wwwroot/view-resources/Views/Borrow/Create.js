@@ -1,5 +1,4 @@
 ﻿(function ($) {    
-    /*import { formatDate } from './main.js';*/
     var _borrowAppService = abp.services.app.borrow;
     var _$form = $('form[name=BorrowInformationForm]');
     var _indexPage = "/Borrow";
@@ -19,8 +18,8 @@
                 abp.ui.clearBusy(_$form);
             });
         } else {
-            document.getElementById("ReturnDate").disabled = true;
             _borrowAppService.create(borrow).done(function () {
+                window.location.href = _indexPage;
             }).always(function () {
                 abp.ui.clearBusy(_$form);
             });
@@ -28,20 +27,22 @@
     }
 
     $('#BorrowDate').on('change', function () {
+        
         var borrowDate = new Date(document.getElementById("BorrowDate").value);
 
-        document.getElementById("ExpectedReturnDate").value = borrowDate.addDays(7).toLocaleDateString('fr-CA');
+        document.getElementById("ExpectedReturnDate").value = formatDate(borrowDate.addDays(7));
+        document.getElementById("BorrowDate").value = formatDate(borrowDate);
     })
 
-    $('#books').on('change', function () {
-        var students = $('#books').Student();
-        if (students == 0) {
-            $('#books').attr('disabled', true);
-        } else {
-            $('#books').attr('disabled', false);
-        }
-    })
-
+    function formatDate(date) {
+        var d = new Date(date);
+        date = [
+            d.getFullYear(),
+            ('0' + (d.getMonth() + 1)).slice(-2),
+            ('0' + d.getDate()).slice(-2)
+        ].join('-');
+        return date;
+    }
 
     function cancel() {
         window.location.href = _indexPage;

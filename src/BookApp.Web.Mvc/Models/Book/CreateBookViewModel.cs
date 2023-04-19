@@ -1,4 +1,5 @@
-﻿using BookApp.Books.Dto;
+﻿using BookApp.BookCategories.Dto;
+using BookApp.Books.Dto;
 using BookApp.Students.Dto;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,10 +15,10 @@ namespace BookApp.Web.Models.Book
         public string BookAuthor { get; set; }
         [Required]
         public string BookPublisher { get; set; }
-        public int StudentId { get; set; }
-        public string StudentName { get; set; }
-        public List<StudentDto> ListStudents { get; set; }
-        //public DateTime BookYear { get; set; } 
-        //public DateTime BookPublished { get; set; }
+        [Required]
+        public bool IsBorrowed { get; set; }        
+        public int BookCategoriesId { get; set; }
+        public List<BookCategoriesDto> ListBookCategories { get; set; }
+
     }
 }

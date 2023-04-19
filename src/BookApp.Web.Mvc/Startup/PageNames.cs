@@ -11,5 +11,6 @@
         public const string Student = "Student";
         public const string Department = "Department";
         public const string Borrow = "Borrow";
+        public const string BookCategories = "BookCategories";
     }
 }

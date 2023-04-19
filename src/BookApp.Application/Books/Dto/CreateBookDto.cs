@@ -21,12 +21,9 @@ namespace BookApp.Books.Dto
 
         [Required]
         public string BookAuthor { get; set; }
-        public int StudentId { get; set; }
-        public int StudentName { get; set; }
-        //[Required]
-        //public DateTime BookYear { get; set; }
-
-        //[Required]
-        //public DateTime BookPublished { get; set; } 
+        [Required]
+        public bool IsBorrowed { get; set; }
+        public int BookCategoriesId { get; set; }
+       
     }
 }

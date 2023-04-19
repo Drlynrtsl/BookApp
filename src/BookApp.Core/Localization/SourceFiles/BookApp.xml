@@ -121,5 +121,6 @@
 	<text name="Student">Student</text>
 	<text name="Department">Department</text>
 	<text name="Borrow">Borrow</text>
+	  <text name ="BookCategories">Book Categories</text>
   </texts>
 </localizationDictionary>

@@ -208,5 +208,17 @@
     "inputFiles": [
       "wwwroot/view-resources/Views/Borrow/Return.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/BookCategories/Create.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/BookCategories/Create.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/BookCategories/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/BookCategories/Index.js"
+    ]
   }
 ]

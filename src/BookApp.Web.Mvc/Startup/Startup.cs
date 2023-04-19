@@ -18,7 +18,7 @@ using Abp.Dependency;
 using Abp.Json;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
-
+using Microsoft.OpenApi.Models;
 
 namespace BookApp.Web.Startup
 {
@@ -59,6 +59,12 @@ namespace BookApp.Web.Startup
 
             services.AddSignalR();
 
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "AbpZeroTemplate API", Version = "v1" });
+                options.DocInclusionPredicate((docName, description) => true);
+            });
+
             // Configure Abp and Dependency Injection
             return services.AddAbp<BookAppWebMvcModule>(
                 // Configure Log4Net logging
@@ -70,6 +76,8 @@ namespace BookApp.Web.Startup
                         )
                 )
             );
+
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
@@ -102,6 +110,13 @@ namespace BookApp.Web.Startup
                 endpoints.MapControllerRoute("Book", "{controller=Book}/{action=CreateBook}/{id?}");
                 endpoints.MapControllerRoute("defaultWithArea", "{area}/{controller=Home}/{action=Index}/{id?}");
             });
+
+            app.UseSwagger();
+            //Enable middleware to serve swagger - ui assets(HTML, JS, CSS etc.)
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "AbpZeroTemplate API V1");
+            }); //URL: /swagger 
         }
     }
 }
