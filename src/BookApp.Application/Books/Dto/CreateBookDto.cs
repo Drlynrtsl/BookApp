@@ -15,15 +15,14 @@ namespace BookApp.Books.Dto
 
         [Required]
         public string BookTitle { get; set; }
-
         [Required]
         public string BookPublisher { get; set; }
-
         [Required]
         public string BookAuthor { get; set; }
         [Required]
         public bool IsBorrowed { get; set; }
         public int BookCategoriesId { get; set; }
+        public string Name { get; set; }
        
     }
 }

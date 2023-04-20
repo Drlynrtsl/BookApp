@@ -18,6 +18,7 @@ namespace BookApp.Web.Models.Book
         [Required]
         public bool IsBorrowed { get; set; }        
         public int BookCategoriesId { get; set; }
+        public string Name { get; set; }
         public List<BookCategoriesDto> ListBookCategories { get; set; }
 
     }

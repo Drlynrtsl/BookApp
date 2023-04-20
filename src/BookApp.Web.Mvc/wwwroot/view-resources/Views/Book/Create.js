@@ -9,6 +9,7 @@
         }
         var book = _$form.serializeFormToObject();
         /*book.StudentId = parseInt(book.StudentId);*/
+        book.BookCategoriesId = parseInt(book.BookCategoriesId);
         abp.ui.setBusy(_$form);
         if (book.Id != 0) {
             _bookAppService.update(book).done(function () {
@@ -25,17 +26,6 @@
         }
     }
 
-    //$(document).ready(function () {
-    //    $('#books').on('change', function () {
-    //        var Student = $('#books').Student();
-    //        console.log(Student);
-    //        if (Student == 0) {
-    //            $('#books').attr('disabled', true);
-    //        } else {
-    //            $('#books').attr('disabled', false);
-    //        }
-    //    })
-    //})
 
 
     function cancel() {

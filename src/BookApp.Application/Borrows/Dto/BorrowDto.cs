@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using BookApp.Books.Dto;
+using BookApp.Departments.Dto;
 using BookApp.Entities;
 using BookApp.Students.Dto;
 using System;
@@ -24,6 +25,10 @@ namespace BookApp.Borrows.Dto
         public BookDto Book { get; set; }
         public int StudentId { get; set; }
         public string StudentName { get; set; }
+        public string StudentDepartmentId { get; set; }
         public StudentDto Student { get; set; }
+        public int DepartmentId { get; set; }
+        public string Name { get; set; }
+        public DepartmentDto Department { get; set; }
     }
 }

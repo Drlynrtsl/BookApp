@@ -16,5 +16,7 @@ namespace BookApp.Books
         //Task<PagedResultDto<BookDto>> GetAllPagedBookResult(PagedBookResultRequestDto input);
         Task<List<BookDto>> GetAllBooks();
         Task<List<BookDto>> GetAvailableBooks();
+
+        Task<BookDto> GetBookWithBookCategories(EntityDto<int> input);
     }
 }

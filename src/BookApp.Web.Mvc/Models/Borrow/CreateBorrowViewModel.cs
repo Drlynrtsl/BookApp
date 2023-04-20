@@ -21,9 +21,13 @@ namespace BookApp.Web.Models.Borrow
         public int BookId { get; set; }
         public string BookTitle { get; set; }
         public List<BookDto> ListBooks { get; set; }
-        //public Student Student { get; set; }
         public int StudentId  { get; set; }
         public string StudentName { get; set; }
+        public string StudentDepartmentId { get; set; }
         public List<StudentDto> ListStudents { get; set; }
+        public int DepartmentId { get; set; }
+        public string Name { get; set; }
+        public List<DepartmentDto> ListDepartments { get; set; }
+
     }
 }

@@ -1632,7 +1632,7 @@ namespace BookApp.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BookId")
+                    b.Property<int?>("BookId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("BorrowDate")
@@ -1650,6 +1650,9 @@ namespace BookApp.Migrations
                     b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("DepartmentId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("ExpectedReturnDate")
                         .HasColumnType("datetime2");
 
@@ -1665,12 +1668,14 @@ namespace BookApp.Migrations
                     b.Property<DateTime?>("ReturnDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("StudentId")
+                    b.Property<int?>("StudentId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BookId");
+
+                    b.HasIndex("DepartmentId");
 
                     b.HasIndex("StudentId");
 
@@ -2066,17 +2071,19 @@ namespace BookApp.Migrations
                 {
                     b.HasOne("BookApp.Entities.BookInfo", "Book")
                         .WithMany()
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BookId");
+
+                    b.HasOne("BookApp.Entities.Department", "Department")
+                        .WithMany()
+                        .HasForeignKey("DepartmentId");
 
                     b.HasOne("BookApp.Entities.Student", "Student")
                         .WithMany()
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("StudentId");
 
                     b.Navigation("Book");
+
+                    b.Navigation("Department");
 
                     b.Navigation("Student");
                 });

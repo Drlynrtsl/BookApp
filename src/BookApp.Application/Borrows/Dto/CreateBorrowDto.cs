@@ -1,4 +1,5 @@
 ﻿using Abp.AutoMapper;
+using BookApp.Departments.Dto;
 using BookApp.Entities;
 using System;
 using System.Collections.Generic;
@@ -21,5 +22,8 @@ namespace BookApp.Borrows.Dto
         public string BookTitle { get; set; }
         public int StudentId { get; set; }
         public string StudentName { get; set; }
+        public string StudentDepartmentId { get; set; }
+        public int DepartmentId { get; set; }
+        public string Name { get; set; }
     }
 }

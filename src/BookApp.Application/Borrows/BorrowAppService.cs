@@ -49,6 +49,7 @@ namespace BookApp.Borrows
 
                 var book = await _bookRepository.GetAsync(input.BookId);
                 book.IsBorrowed = true;
+                
                 await _bookRepository.UpdateAsync(book);
 
                 return base.MapToEntityDto(borrow);
@@ -71,12 +72,18 @@ namespace BookApp.Borrows
             var query = await _repository.GetAll()
                 .Include(x => x.Book)
                 .Include(x => x.Student)
+                //.ThenInclude(Student => Student.StudentDepartmentId)
+                .Include(x => x.Department)
+                //.ThenInclude(Department => Department.Id)
                 .Where(x => x.Id == input.Id)
+                //.Where(x => Student.StudentDepartmentId == Department.Id)
                 .Select(x => ObjectMapper.Map<BorrowDto>(x))
                 .FirstOrDefaultAsync();
 
             return query;
         }
+
+       
 
         //public override Task<BorrowDto> GetAsync(EntityDto<int> input)
         //{

@@ -4,6 +4,8 @@ using BookApp.Books.Dto;
 using BookApp.Borrows;
 using BookApp.Borrows.Dto;
 using BookApp.Controllers;
+using BookApp.Departments;
+using BookApp.Departments.Dto;
 using BookApp.Students;
 using BookApp.Students.Dto;
 using BookApp.Web.Models.Borrow;
@@ -21,12 +23,14 @@ namespace BookApp.Web.Controllers.Borrow
         private readonly IBorrowAppService _borrowAppService;
         private readonly IBookAppService _bookAppService;
         private readonly IStudentAppService _studentAppService;
+        private readonly IDepartmentAppService _departmentAppService;
 
-        public BorrowController(IBorrowAppService borrowAppService, IBookAppService bookAppService, IStudentAppService studentAppService)
+        public BorrowController(IBorrowAppService borrowAppService, IBookAppService bookAppService, IStudentAppService studentAppService, IDepartmentAppService departmentAppService)
         {
             _borrowAppService = borrowAppService;
             _bookAppService = bookAppService;
             _studentAppService = studentAppService;
+            _departmentAppService = departmentAppService;
         }
        
         public async Task<IActionResult> Index()
@@ -44,8 +48,9 @@ namespace BookApp.Web.Controllers.Borrow
             var model = new CreateBorrowViewModel();
             var books = new List<BookDto>();
             var students = new List <StudentDto>();
+            var departments = new List<DepartmentDto>();
             
-            //ViewBag.Departments = departments;
+            //ViewBag.Departments = departments;S
 
             if (id != 0) //Update
             {
@@ -59,57 +64,31 @@ namespace BookApp.Web.Controllers.Borrow
                     BookTitle = borrow.BookTitle,
                     StudentId = borrow.StudentId,
                     StudentName = borrow.StudentName,
+                    StudentDepartmentId = borrow.StudentDepartmentId,
                     Id = id,
-                    IsBorrowed = borrow.Book.IsBorrowed
+                    IsBorrowed = borrow.Book.IsBorrowed,
+                    DepartmentId = borrow.DepartmentId,
+                    Name = borrow.Name
                 };
 
                 books.Add(ObjectMapper.Map<BookDto>(borrow.Book));
                 students.Add(ObjectMapper.Map<StudentDto>(borrow.Student));
+                departments.Add(ObjectMapper.Map<DepartmentDto>(borrow.Department));
             }
              else //Create
             {
                 books = await _bookAppService.GetAvailableBooks();
                 students = await _studentAppService.GetAllStudents();
+                departments = await _departmentAppService.GetAllDepartments();
             }
 
             
             model.ListBooks = books;
             model.ListStudents = students;
+            model.ListDepartments = departments;
             //ViewBag.model = departments;
 
             return View(model);
         }      
-
-        //[HttpGet]
-        //public async Task <IActionResult> Return(int id)
-        //{
-        //    var model = new ReturnBorrowListViewModel();
-        //    var books = await _bookAppService.GetAllBooks(); //bookID
-        //    var students = await _studentAppService.GetAllStudents(); //studentID
-        //                                                              //ViewBag.Departments = departments;
-
-        //    if (id != 0)
-        //    {
-        //        var borrow = await _borrowAppService.GetAsync(new EntityDto<int>(id));
-        //        model = new ReturnBorrowListViewModel()
-        //        {
-        //            BorrowDate = borrow.BorrowDate,
-        //            ExpectedReturnDate = borrow.ExpectedReturnDate,
-        //            IsBorrowed = borrow.IsBorrowed,
-        //            ReturnDate = borrow.ReturnDate,
-        //            BookId = borrow.BookId,
-        //            BookTitle = borrow.BookTitle,
-        //            StudentId = borrow.StudentId,
-        //            StudentName = borrow.StudentName,
-        //            Id = id
-        //        };
-        //    }
-
-        //    model.ListBooks = books;
-        //    model.ListStudents = students;
-        //    //ViewBag.model = departments;
-
-        //    return View(model);
-        //}
     }
 }

@@ -21,10 +21,12 @@ namespace BookApp.Books
     {
         private readonly IRepository<BookInfo, int> _repository;
         private readonly IRepository<BookCategory, int> _bookCategoryRepository;
-        public BookAppService(IRepository<BookInfo, int> repository, IRepository<BookCategory, int> bookCategoryRepository) : base(repository)
+        private readonly IRepository<Department, int> _departmentRepository;
+        public BookAppService(IRepository<BookInfo, int> repository, IRepository<BookCategory, int> bookCategoryRepository, IRepository<Department, int> departmentRepository) : base(repository)
         {
             _repository = repository;
             _bookCategoryRepository = bookCategoryRepository;
+            _departmentRepository = departmentRepository;
         }
 
         public async Task<List<BookDto>> GetAllBooks()
@@ -56,6 +58,18 @@ namespace BookApp.Books
             .Select(x => ObjectMapper.Map<BookDto>(x))
             .ToListAsync();
             return new PagedResultDto<BookDto>(query.Count(), query);
+        }
+
+        public async Task<BookDto> GetBookWithBookCategories(EntityDto<int>input)
+        {
+            var query = await _repository.GetAll()
+                .Include(x => x.BookCategories)
+                //.ThenInclude(BookCategories => BookCategories.DepartmentId)
+                .Where(x => x.Id == input.Id)
+                .Select(x => ObjectMapper.Map<BookDto>(x))
+                .FirstOrDefaultAsync();
+
+            return query;
         }
 
 

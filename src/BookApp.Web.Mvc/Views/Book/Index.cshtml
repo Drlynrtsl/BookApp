@@ -5,7 +5,6 @@
 @{
     ViewBag.Title = L("Book");
     ViewBag.CurrentPageName = PageNames.Book;
-    //var model = ViewBag.Model as List<BookApp.Controllers.BookController.User>;
 }
 
 @section scripts
@@ -14,7 +13,16 @@
         <script src="~/view-resources/Views/Book/Index.js" asp-append-version="true"></script>
     </environment>
     }
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <a href="/Book/Create" class="save-button btn bg-blue float-sm-right btn-add" type="button">Add Books</a>                    
+                </div>
+            </div>
+        </div>
 
+    </section>
     <div class="card">
         <div class="card-header">
             <div class="row">
@@ -39,7 +47,7 @@
                                 <td>@books.BookTitle</td>
                                 <td>@books.BookAuthor</td>
                                 <td>@books.BookPublisher</td>
-                                <td>@books.BookCategoriesId.Name</td>
+                                <td>@books.BookCategories?.Name</td>
                                 @if(books.IsBorrowed){
                                     <td>Borrowed</td>
                                 }else{
@@ -56,29 +64,8 @@
                             </tr>
                         }
                     </table>
-                    @*<div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel" data-backdrop="static">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                            </div>
-                        </div>
-                    </div>*@
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-6">
-                @*<button class="save-button btn bg-blue float-sm-right btn-add" type="button" onclick="location.href'@Url.Action("Save", "Book")'">Add</button>*@
-                <a href="/Book/Create" class="save-button btn bg-blue float-sm-right btn-add" type="button">Add</a>
-                @*<div class="col-md-6">
-                @Html.PartialAsync("~/Views/Book/CreateBook.cshtml")
-                </div>*@
-            </div>
-        </div>
-    </div>
-
-</section>

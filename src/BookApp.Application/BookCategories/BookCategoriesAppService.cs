@@ -17,6 +17,7 @@ namespace BookApp.BookCategories
     public class BookCategoriesAppService : AsyncCrudAppService<BookCategory, BookCategoriesDto, int, PagedBookCategoriesResultRequestDto, CreateBookCategoriesDto, BookCategoriesDto>, IBookCategoriesAppService
     {
         private readonly IRepository<BookCategory, int> _repository;
+
         public BookCategoriesAppService(IRepository<BookCategory, int> repository) : base(repository)
         {
             _repository = repository;

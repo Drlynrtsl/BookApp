@@ -34,6 +34,19 @@
         document.getElementById("BorrowDate").value = formatDate(borrowDate);
     })
 
+
+    //$(document).on('change','students', function () {
+    //    var students = $('select[name=students]');
+    //    var books = $('select[name=books]');
+
+    //    var $this = $(this).find(':selected');
+    //    var name = $this.attr('name');
+    //    books.find("option").hide();
+
+    //    $set = books.find('option.' + name);
+    //    $set.show().first().prop('selected', true);
+    //});
+
     function formatDate(date) {
         var d = new Date(date);
         date = [
