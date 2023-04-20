@@ -18,10 +18,12 @@ namespace BookApp.Borrows
     {
         private readonly IRepository<Borrow, int> _repository;
         private readonly IRepository<BookInfo, int> _bookRepository;
-        public BorrowAppService(IRepository<Borrow, int> repository, IRepository<BookInfo, int> bookRepository) : base(repository)
+        private readonly IRepository<Department, int> _departmentRepository;
+        public BorrowAppService(IRepository<Borrow, int> repository, IRepository<BookInfo, int> bookRepository, IRepository<Department, int> departmentRepository) : base(repository)
         {
             _repository = repository;
             _bookRepository = bookRepository;
+            _departmentRepository = departmentRepository;
         }
 
         public async Task<List<BorrowDto>> GetAllBorrows()
@@ -34,7 +36,10 @@ namespace BookApp.Borrows
         {
             var query = await _repository.GetAll()
                 .Include(x => x.Book)
+                    .ThenInclude(x => x.BookCategories)
+                    .ThenInclude(x => x.Department)
                 .Include(x => x.Student)
+                    .ThenInclude(x => x.StudentDepartment)
                 .Select(x => ObjectMapper.Map<BorrowDto>(x))
                 .ToListAsync();
             return new PagedResultDto<BorrowDto>(query.Count(), query);
@@ -71,12 +76,11 @@ namespace BookApp.Borrows
         {
             var query = await _repository.GetAll()
                 .Include(x => x.Book)
-                .Include(x => x.Student)
-                //.ThenInclude(Student => Student.StudentDepartmentId)
-                .Include(x => x.Department)
-                //.ThenInclude(Department => Department.Id)
+                    .ThenInclude(x => x.BookCategories)
+                    .ThenInclude(x => x.Department)
+                    .Include(x => x.Student)
+                    .ThenInclude(x => x.StudentDepartment)
                 .Where(x => x.Id == input.Id)
-                //.Where(x => Student.StudentDepartmentId == Department.Id)
                 .Select(x => ObjectMapper.Map<BorrowDto>(x))
                 .FirstOrDefaultAsync();
 
@@ -103,6 +107,7 @@ namespace BookApp.Borrows
                 }
                 
                 await _bookRepository.UpdateAsync(book);
+
 
                 return base.MapToEntityDto(borrow);
             }

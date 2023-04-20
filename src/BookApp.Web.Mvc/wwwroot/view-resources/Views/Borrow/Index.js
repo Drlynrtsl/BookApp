@@ -26,11 +26,11 @@
 
             });
     }
-    $('#BorrowDate').on('change', function () {
-        var borrowDate = new Date(document.getElementById("BorrowDate").value);
+    //$('#BorrowDate').on('change', function () {
+    //    var borrowDate = new Date(document.getElementById("BorrowDate").value);
 
-        document.getElementById("ExpectedReturnDate").value = borrowDate.addDays(7);
-    })
+    //    document.getElementById("ExpectedReturnDate").value = borrowDate.addDays(7);
+    //})
 
 
     function update() {

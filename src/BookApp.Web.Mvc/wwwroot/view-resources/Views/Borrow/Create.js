@@ -9,7 +9,11 @@
         }
         var borrow = _$form.serializeFormToObject();
         borrow.BookId = parseInt(borrow.BookId);
-        borrow.StudentId = parseInt(borrow.StudentId);
+        borrow.StudentId = parseInt(borrow.StudentId);        
+        borrow.BookCategoriesId = parseInt(borrow.BookCategoriesId);        
+        borrow.DepartmentId = parseInt(borrow.DepartmentId);
+        borrow.StudentDepartmentId = parseInt(borrow.StudentDepartmentId);
+        borrow.StudentDepartmentId = borrow.DepartmentId;
         abp.ui.setBusy(_$form);
         if (borrow.Id != 0) {
             _borrowAppService.update(borrow).done(function () {
@@ -25,27 +29,25 @@
             });
         }
     }
+    //function getStudentBook() {
+    //    var student 
+    //}
+
+    //$('#students').on('change', function () {
+    //    var student = document.getElementById("students").value;
+    //    var book = document.getElementById("books").value;
+
+
+    //    document.getElementById("books").value = getStudentBook(student);
+    //})
+
 
     $('#BorrowDate').on('change', function () {
         
         var borrowDate = new Date(document.getElementById("BorrowDate").value);
 
         document.getElementById("ExpectedReturnDate").value = formatDate(borrowDate.addDays(7));
-        document.getElementById("BorrowDate").value = formatDate(borrowDate);
-    })
-
-
-    //$(document).on('change','students', function () {
-    //    var students = $('select[name=students]');
-    //    var books = $('select[name=books]');
-
-    //    var $this = $(this).find(':selected');
-    //    var name = $this.attr('name');
-    //    books.find("option").hide();
-
-    //    $set = books.find('option.' + name);
-    //    $set.show().first().prop('selected', true);
-    //});
+    })  
 
     function formatDate(date) {
         var d = new Date(date);

@@ -1650,9 +1650,6 @@ namespace BookApp.Migrations
                     b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DepartmentId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("ExpectedReturnDate")
                         .HasColumnType("datetime2");
 
@@ -1674,8 +1671,6 @@ namespace BookApp.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("BookId");
-
-                    b.HasIndex("DepartmentId");
 
                     b.HasIndex("StudentId");
 
@@ -2073,17 +2068,11 @@ namespace BookApp.Migrations
                         .WithMany()
                         .HasForeignKey("BookId");
 
-                    b.HasOne("BookApp.Entities.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId");
-
                     b.HasOne("BookApp.Entities.Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId");
 
                     b.Navigation("Book");
-
-                    b.Navigation("Department");
 
                     b.Navigation("Student");
                 });

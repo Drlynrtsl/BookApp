@@ -42,56 +42,96 @@
                                     <th>Return Date</th>
                                     <th>Book Name</th>
                                     <th>Student Name</th>
+                                    <th>Department</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                         @foreach (var borrows in Model.Borrows)
                         {
-                            <tr>
-                                <td>@borrows.BorrowDate.ToString("yyyy-MM-dd")</td>
-                                <td>@borrows.ExpectedReturnDate.ToString("yyyy-MM-dd")</td>
-                                
-                                @if (borrows.Book.IsBorrowed)
-                                {
-                                <td>Borrowed</td>
-                                }
-                                else
-                                {
-                                <td>Returned</td>
-                                }
-                                <td>@borrows.ReturnDate?.ToString("yyyy-MM-dd")</td>
-                                @*<td>---</td>
-                                @if (!borrows.ReturnDate)
-                                {
-                                    <td>---</td>
-                                }
-                                else
-                                {
-                                    <td>@borrows?.ReturnDate</td>
-                                }*@
-                                <td>@borrows.Book?.BookTitle</td>
-                                <td>@borrows.Student?.StudentName</td>
-                                @if(borrows.Book.IsBorrowed){
-                                    <td>
-                                        <a href="/Borrow/Create/@borrows.Id" type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
-                                            <i class="fas fa-pencil-alt"></i> Update
-                                        </a>
-                                        <button type="button" class="delete-button btn btn-sm bg-danger" name="Delete" borrow-id="@borrows.Id">
-                                            <i class="fas fa-trash"></i> Delete
-                                        </button>
-                                    </td>
-                                }else
-                                {
-                                    <td>
-                                        <button location="/Borrow/Create/@borrows.Id" disabled type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
-                                            <i class="fas fa-pencil-alt"></i> Update
-                                        </button>
-                                        <button type="button" disabled class="delete-button btn btn-sm bg-danger" name="Delete" borrow-id="@borrows.Id">
-                                            <i class="fas fa-trash"></i> Delete
-                                        </button>
-                                    </td>
-                                }
-                            </tr>
+                            @if (borrows.ReturnDate > borrows.ExpectedReturnDate)
+                            {
+                                <tr style="background-color:#A30000;color:white">
+                                    <td>@borrows.BorrowDate.ToString("yyyy-MM-dd")</td>
+                                    <td>@borrows.ExpectedReturnDate.ToString("yyyy-MM-dd")</td>
+
+                                    @if (borrows.Book.IsBorrowed)
+                                    {
+                                        <td>Borrowed</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Returned</td>
+                                    }
+                                    <td>@borrows.ReturnDate?.ToString("yyyy-MM-dd")</td>
+                                    <td>@borrows.Book?.BookTitle</td>
+                                    <td>@borrows.Student?.StudentName</td>
+                                    <td>@borrows.Book?.BookCategories.Department.Name</td>
+                                    @if (borrows.Book.IsBorrowed)
+                                    {
+                                        <td>
+                                            <a href="/Borrow/Create/@borrows.Id" type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
+                                                <i class="fas fa-pencil-alt"></i> Update
+                                            </a>
+                                            <button type="button" class="delete-button btn btn-sm bg-danger" name="Delete" borrow-id="@borrows.Id">
+                                                <i class="fas fa-trash"></i> Delete
+                                            </button>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <button location="/Borrow/Create/@borrows.Id" disabled type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
+                                                <i class="fas fa-pencil-alt"></i> Update
+                                            </button>
+                                            <button type="button" disabled class="delete-button btn btn-sm bg-danger" name="Delete" borrow-id="@borrows.Id">
+                                                <i class="fas fa-trash"></i> Delete
+                                            </button>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                            else{
+                                <tr>
+                                    <td>@borrows.BorrowDate.ToString("yyyy-MM-dd")</td>
+                                    <td>@borrows.ExpectedReturnDate.ToString("yyyy-MM-dd")</td>
+
+                                    @if (borrows.Book.IsBorrowed)
+                                    {
+                                        <td>Borrowed</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Returned</td>
+                                    }
+                                    <td>@borrows.ReturnDate?.ToString("yyyy-MM-dd")</td>
+                                    <td>@borrows.Book?.BookTitle</td>
+                                    <td>@borrows.Student?.StudentName</td>
+                                    <td>@borrows.Book?.BookCategories.Department.Name</td>
+                                    @if (borrows.Book.IsBorrowed)
+                                    {
+                                        <td>
+                                            <a href="/Borrow/Create/@borrows.Id" type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
+                                                <i class="fas fa-pencil-alt"></i> Update
+                                            </a>
+                                            <button type="button" class="delete-button btn btn-sm bg-danger" name="Delete" borrow-id="@borrows.Id">
+                                                <i class="fas fa-trash"></i> Delete
+                                            </button>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <button location="/Borrow/Create/@borrows.Id" disabled type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
+                                                <i class="fas fa-pencil-alt"></i> Update
+                                            </button>
+                                            <button type="button" disabled class="delete-button btn btn-sm bg-danger" name="Delete" borrow-id="@borrows.Id">
+                                                <i class="fas fa-trash"></i> Delete
+                                            </button>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                            
                         }
                     </table>
                 </div>

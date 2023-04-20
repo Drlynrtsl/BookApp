@@ -1,4 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
+using BookApp.BookCategories;
+using BookApp.BookCategories.Dto;
 using BookApp.Books;
 using BookApp.Books.Dto;
 using BookApp.Borrows;
@@ -24,13 +26,15 @@ namespace BookApp.Web.Controllers.Borrow
         private readonly IBookAppService _bookAppService;
         private readonly IStudentAppService _studentAppService;
         private readonly IDepartmentAppService _departmentAppService;
+        private readonly IBookCategoriesAppService _bookCategoriesAppService;
 
-        public BorrowController(IBorrowAppService borrowAppService, IBookAppService bookAppService, IStudentAppService studentAppService, IDepartmentAppService departmentAppService)
+        public BorrowController(IBorrowAppService borrowAppService, IBookAppService bookAppService, IStudentAppService studentAppService, IDepartmentAppService departmentAppService, IBookCategoriesAppService bookCategoriesAppService)
         {
             _borrowAppService = borrowAppService;
             _bookAppService = bookAppService;
             _studentAppService = studentAppService;
             _departmentAppService = departmentAppService;
+            _bookCategoriesAppService = bookCategoriesAppService;
         }
        
         public async Task<IActionResult> Index()
@@ -49,8 +53,7 @@ namespace BookApp.Web.Controllers.Borrow
             var books = new List<BookDto>();
             var students = new List <StudentDto>();
             var departments = new List<DepartmentDto>();
-            
-            //ViewBag.Departments = departments;S
+            var bookcategories = new List<BookCategoriesDto>();
 
             if (id != 0) //Update
             {
@@ -68,24 +71,28 @@ namespace BookApp.Web.Controllers.Borrow
                     Id = id,
                     IsBorrowed = borrow.Book.IsBorrowed,
                     DepartmentId = borrow.DepartmentId,
-                    Name = borrow.Name
+                    DepartmentName = borrow.DepartmentName,
+                    BookCategoriesId = borrow.BookCategoriesId,
+                    BookCategoriesName = borrow.BookCategoriesName
                 };
 
                 books.Add(ObjectMapper.Map<BookDto>(borrow.Book));
                 students.Add(ObjectMapper.Map<StudentDto>(borrow.Student));
                 departments.Add(ObjectMapper.Map<DepartmentDto>(borrow.Department));
+                bookcategories.Add(ObjectMapper.Map<BookCategoriesDto>(borrow.BookCategories));
             }
              else //Create
             {
                 books = await _bookAppService.GetAvailableBooks();
                 students = await _studentAppService.GetAllStudents();
                 departments = await _departmentAppService.GetAllDepartments();
+                bookcategories = await _bookCategoriesAppService.GetAllBookCategories();
             }
-
             
             model.ListBooks = books;
             model.ListStudents = students;
             model.ListDepartments = departments;
+            model.ListBookCategories = bookcategories;
             //ViewBag.model = departments;
 
             return View(model);
