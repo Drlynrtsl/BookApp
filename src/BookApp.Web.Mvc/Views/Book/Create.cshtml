@@ -15,11 +15,11 @@
         <div class="bg-opacity-5 py-2" id="form">
             <form style="text-align: center" name="BookInformationForm" role="form" class="form-validation form-horizontal">
                 <div class="container">
-                    <h3 class="col-md-10">Book Information Form</h3><br>
+                    <h3 class="col-md-12 text-center">Book Information Form</h3><br>
                 </div>
                 <input type="hidden" name="Id" value="@Model?.Id" class="form-control">
-                <div class="row">
-                    <div class="col-md-9 mb-10">
+                <div class="row g-1">
+                    <div class="col-md-10 mb-10">
                         <div role="tabpanel" class="tab-pane container active">
                             <div class="form-group row mb-2 required" style="text-align: center">
                                 <label class="col-md-3 col-form-label" style="text-align:right">Book Title</label><br>
@@ -42,20 +42,20 @@
                             <input type="hidden" name="BookCategoriesId" id="BookCategoriesId" value="@Model?.BookCategoriesId" class="form-control">
                             <div class="form-group row required text-align: center">
                                 <label class="col-md-3 col-form-label" style="text-align:right">Categories</label><br>
-                                <div class="col-md-9">
+                                <div class="col-md-5">
                                     @Html.DropDownListFor(m => m.BookCategoriesId, Model.ListBookCategories.Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.Name}), "--Select Category--", new { @class = "form-control bookcategories", @id="bookcategories"})
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row modal-footer justify-content-between">
-                    <div class="col-md-9 mb-10">
+                <div class="container my-3 bg-light">
+                    <div class="col-md-12 text-center">
                             <button type="submit" class="save-button btn btn-primary" name="Create">Save</button>
                             <button type="button" class="back-button btn btn-secondary" name="Back">Back</button>                           
                     </div>
                 </div>
-        </form>
+            </form>
         </div>
     </body>
 

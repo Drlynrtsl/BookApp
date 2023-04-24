@@ -18,14 +18,12 @@ namespace BookApp.Borrows
     {
         private readonly IRepository<Borrow, int> _repository;
         private readonly IRepository<BookInfo, int> _bookRepository;
-        private readonly IRepository<Department, int> _departmentRepository;
-        public BorrowAppService(IRepository<Borrow, int> repository, IRepository<BookInfo, int> bookRepository, IRepository<Department, int> departmentRepository) : base(repository)
+        public BorrowAppService(IRepository<Borrow, int> repository, IRepository<BookInfo, int> bookRepository) : base(repository)
         {
             _repository = repository;
             _bookRepository = bookRepository;
-            _departmentRepository = departmentRepository;
-        }
 
+        }
         public async Task<List<BorrowDto>> GetAllBorrows()
         {
             var query = await _repository.GetAll().Select(x => ObjectMapper.Map<BorrowDto>(x)).ToListAsync();
@@ -71,14 +69,13 @@ namespace BookApp.Borrows
             return base.DeleteAsync(input);
         }
 
-
-        public async Task<BorrowDto> GetBorrowWithBookAndStudent(EntityDto<int> input)
+        public async Task<BorrowDto> GetBorrowWithBookAndStudentUnderBookCategory(EntityDto<int> input)
         {
             var query = await _repository.GetAll()
                 .Include(x => x.Book)
                     .ThenInclude(x => x.BookCategories)
                     .ThenInclude(x => x.Department)
-                    .Include(x => x.Student)
+                .Include(x => x.Student)
                     .ThenInclude(x => x.StudentDepartment)
                 .Where(x => x.Id == input.Id)
                 .Select(x => ObjectMapper.Map<BorrowDto>(x))
@@ -87,12 +84,6 @@ namespace BookApp.Borrows
             return query;
         }
 
-       
-
-        //public override Task<BorrowDto> GetAsync(EntityDto<int> input)
-        //{
-        //    return base.GetAsync(input);
-        //}
         public override async Task<BorrowDto> UpdateAsync(BorrowDto input)
         {
             try
@@ -108,7 +99,6 @@ namespace BookApp.Borrows
                 
                 await _bookRepository.UpdateAsync(book);
 
-
                 return base.MapToEntityDto(borrow);
             }
             catch (Exception e)
@@ -123,6 +113,14 @@ namespace BookApp.Borrows
             return base.GetEntityByIdAsync(id);
         }
 
-  
+        protected override BorrowDto MapToEntityDto(Borrow entity)
+        {
+            return base.MapToEntityDto(entity);
+        }
+
+        protected override void MapToEntity(BorrowDto updateInput, Borrow entity)
+        {
+            base.MapToEntity(updateInput, entity);
+        }
     }
 }

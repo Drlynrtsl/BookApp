@@ -14,7 +14,7 @@ namespace BookApp.Borrows
     {
         //Task<PagedResultDto<BorrowDto>> GetAllPagedBorrowResult(PagedBorrowResultRequestDto input);
         Task<List<BorrowDto>> GetAllBorrows();
-        Task<BorrowDto> GetBorrowWithBookAndStudent(EntityDto<int> input);
+        Task<BorrowDto> GetBorrowWithBookAndStudentUnderBookCategory(EntityDto<int> input);
         Task<BorrowDto> CreateAsync(CreateBorrowDto input);
         Task<BorrowDto> UpdateAsync(BorrowDto input);
 

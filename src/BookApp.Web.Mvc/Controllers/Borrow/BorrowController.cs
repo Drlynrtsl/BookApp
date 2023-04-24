@@ -57,7 +57,7 @@ namespace BookApp.Web.Controllers.Borrow
 
             if (id != 0) //Update
             {
-                var borrow = await _borrowAppService.GetBorrowWithBookAndStudent(new EntityDto<int>(id));
+                var borrow = await _borrowAppService.GetBorrowWithBookAndStudentUnderBookCategory(new EntityDto<int>(id));
                 model = new CreateBorrowViewModel()
                 {
                     BorrowDate = borrow.BorrowDate,
@@ -75,6 +75,8 @@ namespace BookApp.Web.Controllers.Borrow
                     BookCategoriesId = borrow.BookCategoriesId,
                     BookCategoriesName = borrow.BookCategoriesName
                 };
+
+                
 
                 books.Add(ObjectMapper.Map<BookDto>(borrow.Book));
                 students.Add(ObjectMapper.Map<StudentDto>(borrow.Student));

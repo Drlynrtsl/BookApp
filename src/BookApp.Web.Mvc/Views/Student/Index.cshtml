@@ -19,8 +19,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
-                    <a href="/Student/Create" class="save-button btn bg-blue float-sm-right" type="button">
-                    <i class="fas fa-plus"> </i> Add Student Info
+                <div class="col-sm-12">
+                    <h1 class="m-0 text-dark">Student Information Dashboard</h1>
+                </div>
+            </div>
+            <div class ="col-sm-6">
+                    <a href="/Student/Create" class="save-button btn bg-blue float-sm-right" style="border-radius: 50%;" type="button">
+                    <i class="fas fa-plus"></i>
                 </a>
             </div>
         </div>
@@ -40,7 +45,7 @@
                                     <th>Contact Number</th>
                                     <th>Email</th>
                                     <th>Department</th>
-                                    <th>Actions</th>
+                                    <th style="width:200px">Actions</th>
                                 </tr>
                             </thead>
                         @foreach (var students in Model.Students)
