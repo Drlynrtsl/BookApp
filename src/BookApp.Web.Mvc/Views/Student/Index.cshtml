@@ -15,22 +15,28 @@
     </environment>
 }
 
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="col-sm-12">
-                    <h1 class="m-0 text-dark">Student Information Dashboard</h1>
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info elevation-1">
+                            <i class="fa fa-user"></i>
+                        </span>
+                        <div class="info-box-content">
+                            <h1 class="info-box-text">Student Information Dashboard</h1>
+                        </div>
+                        <span class="info-box-icon">
+                            <a href="/Student/Create" class="save-button btn float-sm-right btn-lg" style="border-radius: 50%;background-color:#0074B7;color:white" type="button">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </span>
+                    </div>
                 </div>
             </div>
-            <div class ="col-sm-6">
-                    <a href="/Student/Create" class="save-button btn bg-blue float-sm-right" style="border-radius: 50%;" type="button">
-                    <i class="fas fa-plus"></i>
-                </a>
-            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <div class="card">
         <div class="card-header">
@@ -57,7 +63,7 @@
                                 <td>@students.StudentEmail</td>
                                 <td>@students.StudentDepartment?.Name</td>
                                 <td>
-                                    <a href="/Student/Create/@students.Id" type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
+                                    <a href="/Student/Create/@students.Id" type="button" class="update-button btn btn-sm bg-primary edit-role" name="Update">
                                         <i class="fas fa-pencil-alt"></i> Update
                                     </a>
                                     <button type="button" class="delete-button btn btn-sm bg-danger" name="Delete" student-id="@students.Id" student-name="@students.StudentName">

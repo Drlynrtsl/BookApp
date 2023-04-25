@@ -74,9 +74,7 @@ namespace BookApp.Web.Controllers.Borrow
                     DepartmentName = borrow.DepartmentName,
                     BookCategoriesId = borrow.BookCategoriesId,
                     BookCategoriesName = borrow.BookCategoriesName
-                };
-
-                
+                };               
 
                 books.Add(ObjectMapper.Map<BookDto>(borrow.Book));
                 students.Add(ObjectMapper.Map<StudentDto>(borrow.Student));

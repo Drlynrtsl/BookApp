@@ -18,11 +18,14 @@ namespace BookApp.Borrows
     {
         private readonly IRepository<Borrow, int> _repository;
         private readonly IRepository<BookInfo, int> _bookRepository;
-        public BorrowAppService(IRepository<Borrow, int> repository, IRepository<BookInfo, int> bookRepository) : base(repository)
+        private readonly IRepository<BookCategory, int> _bookCategoryRepository;
+        private readonly IRepository<Student, int> _studentRepository;
+        public BorrowAppService(IRepository<Borrow, int> repository, IRepository<BookInfo, int> bookRepository, IRepository<BookCategory, int> bookCategoryRepository, IRepository<Student, int> studentRepository) : base(repository)
         {
             _repository = repository;
             _bookRepository = bookRepository;
-
+            _bookCategoryRepository = bookCategoryRepository;
+            _studentRepository = studentRepository;
         }
         public async Task<List<BorrowDto>> GetAllBorrows()
         {
@@ -51,9 +54,18 @@ namespace BookApp.Borrows
                 await _repository.InsertAsync(borrow);
 
                 var book = await _bookRepository.GetAsync(input.BookId);
+                var student = await _studentRepository.GetAsync(input.StudentId);
+                var bookcategory = await _bookCategoryRepository.GetAsync(input.BookCategoriesId);
                 book.IsBorrowed = true;
+
+                if (input.StudentDepartmentId == bookcategory.DepartmentId)
+                {
+                    book.BookCategoriesId = bookcategory.Id;
+                }
                 
                 await _bookRepository.UpdateAsync(book);
+                await _studentRepository.UpdateAsync(student);
+                await _bookCategoryRepository.UpdateAsync(bookcategory);
 
                 return base.MapToEntityDto(borrow);
             }

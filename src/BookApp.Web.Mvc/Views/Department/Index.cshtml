@@ -14,24 +14,27 @@
         <script src="~/view-resources/Views/Department/Index.js" asp-append-version="true"></script>
     </environment>
 }
-
     <section class="content-header">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-6">
-                    <div class="col-sm-12">
-                        <h1 class="m-0 text-dark">Department List Dashboard</h1>
+                <div class="col-12 col-sm-6 col-md-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info elevation-1">
+                            <i class="fa fa-sitemap"></i>
+                        </span>
+                        <div class="info-box-content">
+                            <h1 class="info-box-text">Department List Dashboard</h1>
+                        </div>
+                        <span class="info-box-icon">
+                            <a href="/Department/Create" class="save-button btn float-sm-right btn-lg" type="button" style="border-radius: 50%;background-color:#0074B7;color:white">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </span>
                     </div>
-                </div>
-                <div class="col-sm-6">
-                    <a href="/Department/Create" class="save-button btn bg-blue float-sm-right" type="button" style="border-radius: 50%;">
-                        <i class="fas fa-plus"></i>
-                    </a>
                 </div>
             </div>
         </div>
     </section>
-
     <div class="card">
         <div class="card-header">
             <div class="row">
@@ -51,7 +54,7 @@
                                 <td>@departments.Id</td>
                                 <td>@departments.Name</td>
                                 <td>
-                                    <a href="/Department/Create/@departments.Id" type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
+                                    <a href="/Department/Create/@departments.Id" type="button" class="update-button btn btn-sm bg-primary edit-role" name="Update">
                                         <i class="fas fa-pencil-alt"></i> Update
                                     </a>
                                     <button type="button" class="delete-button btn btn-sm bg-danger" name="Delete" department-id="@departments.Id">

@@ -17,17 +17,21 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-6">
-                    <div class="col-sm-12">
-                        <h1 class="m-0 text-dark">Book Dashboard</h1>
+                <div class="col-12 col-sm-6 col-md-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info elevation-1">
+                            <i class="fa fa-book"></i>
+                        </span>
+                        <div class="info-box-content">
+                            <h1 class="info-box-text">Book Information Dashboard</h1>
+                        </div>
+                        <span class="info-box-icon">
+                            <a href="/Book/Create" class="save-button btn float-sm-right btn-add btn-lg" type="button" style="border-radius: 50%;background-color:#0074B7;color:white"><i class="fas fa-plus"></i></a>
+                        </span> 
                     </div>
-                </div>
-                <div class="col-sm-6">
-                    <a href="/Book/Create" class="save-button btn bg-blue float-sm-right btn-add" type="button" style="border-radius: 50%;"><i class="fas fa-plus"></i></a>
-                </div>                
+                </div>                      
             </div>
-        </div>
-
+        </div> 
     </section>
     <div class="card">
         <div class="card-header">
@@ -60,12 +64,12 @@
                                     <td>Returned</td>
                                 }
                                 <td>
-                                    <a href="/Book/Create/@books.Id" type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
+                                    <a href="/Book/Create/@books.Id" type="button" class="update-button btn btn-sm bg-primary edit-role" name="Update">
                                         <i class="fas fa-pencil-alt"></i> Update
                                     </a>
                                     <button type="button" class="delete-button btn btn-sm bg-danger" name="Delete" book-id="@books.Id" book-title="@books.BookTitle">
                                         <i class="fas fa-trash"></i> Delete
-                                    </button>
+                                    </button>                                   
                                 </td>
                             </tr>
                         }

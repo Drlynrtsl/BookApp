@@ -25,45 +25,48 @@
                                 <input type="hidden" name="Id" id="Id" value="@Model?.Id" class="form-control">                                
                             @if (Model.Id != 0)
                             {
-                                <div class="form-group row md-2 required" style="align: center">
-                                    <label class="col-md-2 col-form-label" style="text-align:right">Borrow Date</label><br>
-                                    <div class="col">
+                                <div class="form-group row required">
+                                    <label class="col-md-5 col-form-label" style="text-align:right">Borrow Date</label>
+                                    <div class="col-md-2">
                                         <input type="date" name="BorrowDate" id="BorrowDate" value="@Model?.BorrowDate.ToString("yyyy-MM-dd")" class="form-control" placeholder="">
-                                    </div>
-                                    <label class="col-md-2 col-form-label" style="text-align:right">Expected Return Date</label><br>
-                                    <div class="col">
+                                    </div>                                    
+                                </div>
+                                <div class="form-group row required">
+                                    <label class="col-md-5 col-form-label" style="text-align:right">Expected Return Date</label>
+                                    <div class="col-md-2">
                                         <input type="date" name="ExpectedReturnDate" id="ExpectedReturnDate" value="@Model?.ExpectedReturnDate.ToString("yyyy-MM-dd")" class="form-control">
                                     </div>
-                                </div>
+                                </div>                               
                                 <div class="form-group row md-2 required">
-                                    <label class="col-md-3 col-form-label" style="text-align:right">Return Date</label>
-                                    <div class="col">
+                                    <label class="col-md-5 col-form-label" style="text-align:right">Return Date</label>
+                                    <div class="col-md-2">
                                         <input type="date" name="ReturnDate" id="ReturnDate" value="@Model?.ReturnDate?" class="form-control">
                                     </div>
                                 </div>
                             }else{
-                                <div class="form-group row md-2 required" style="align: center">
-                                    <label class="col-md-3 col-form-label" style="text-align:right">Borrow Date</label><br>
-                                    <div class="col">
+                                <div class="form-group row required">
+                                    <label class="col-md-5 col-form-label" style="text-align:right">Borrow Date</label><br>
+                                    <div class="col-md-2">
                                         <input type="date" name="BorrowDate" id="BorrowDate" value="@Model?.BorrowDate" class="form-control" placeholder="">
                                     </div>
-                                    <label class="col-md-2 col-form-label" style="text-align:right">Expected Return Date</label><br>
-                                    <div class="col">
+                                </div>
+                                <div class="form-group row required">
+                                    <label class="col-md-5 col-form-label" style="text-align:right">Expected Return Date</label>
+                                    <div class="col-md-2">
                                         <input type="date" name="ExpectedReturnDate" id="ExpectedReturnDate" value="@Model?.ExpectedReturnDate" class="form-control">
                                     </div>
                                 </div>
                             }
                             <input type="hidden" name="StudentId" id="StudentId" value="@Model?.StudentId" class="form-control">
-                            @*<input type="hidden" name="StudentId" id="DepartmentId" value="@Model?.DepartmentId" class="form-control">*@
                             <div class="form-group row required" style="text-align:center">
-                                <label class="col-md-3 col-form-label" style="text-align:right">Student Name</label><br>
+                                <label class="col-md-5 col-form-label" style="text-align:right">Student Name</label><br>
                                 <div class="col-md-5">
-                                    @Html.DropDownListFor(m => m.StudentId, Model.ListStudents.Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.StudentName}), "--Select Student--", new { @class = "form-control students", @id= "students"})
+                                    @Html.DropDownListFor(m => m.StudentId, Model.ListStudents.Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.StudentName}), "--Select Student--", new { @class = "form-control students", @id="students"})
                                 </div>
                             </div>
                             <input type="hidden" name="BookId" id="BookId" value="@Model?.BookId" class="form-control">
                             <div class="form-group row required text-align: center">
-                                <label class="col-md-3 col-form-label" style="text-align:right">Book Title</label><br>
+                                <label class="col-md-5 col-form-label" style="text-align:right">Book Title</label><br>
                                 @if (Model.StudentDepartmentId == Model.DepartmentId)
                                 {
                                     <div class="col-md-5">
@@ -71,12 +74,6 @@
                                     </div>
                                 }
                             </div>
-                            @*<div hidden="hidden" class="form-group row required text-align: center">
-                            <label class="col-md-3 col-form-label" style="text-align:right">Book Category</label><br>
-                            <div class="col-md-9">
-                            @Html.DropDownListFor(m => m.BookCategoriesId, Model.ListBookCategories.Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.Name}), "--Select Book Categories--", new { @class = "form-control bookcategories", @id="bookcategories"})
-                            </div>
-                            </div>*@
                         </div>
                         </div>
                     </div>

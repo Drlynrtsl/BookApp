@@ -19,24 +19,24 @@
         <div class="bg-opacity-5 py-2" id="form">
             <form style="text-align: center" name="DepartmentInformationForm" role="form" class="form-validation form-horizontal">
                 <div class="container">
-                    <h3 class="col-md-10">Department Information Form</h3><br>
+                    <h3 class="col-md-12">Department Information Form</h3><br>
                 </div>
                 <input type="hidden" name="Id" value="@Model?.Id" class="form-control" readonly>
                 <div class="row">
                     <div class="col-md-9 mb-10">
                         <div role="tabpanel" class="tab-pane container active">
-                            <div class="form-group row required" style="text-align: center">
-                                <label class="col-md-3 col-form-label">Name</label><br>
-                                <div class="col-md-9">
+                            <div class="form-group row required" style="text-align: right">
+                                <label class="col-md-5 col-form-label">Name</label><br>
+                                <div class="col-md-5">
                                     <input type="text" name="Name" id="Name" value="@Model?.Name" class="form-control" placeholder="Department" required maxlength="255" minlength="2">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="row modal-footer justify-content-between">
-                    <div class="col-md-9 mb-10">
+
+                <div class="container my-3 bg-light">
+                    <div class="col-md-12 text-center">
                         <button type="button" class="back-button btn btn-default" name="Back">Back</button>
                         <button type="submit" class="save-button btn btn-primary" name="Create">Save</button>
                     </div>                    

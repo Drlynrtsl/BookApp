@@ -12,24 +12,29 @@
     {
     <environment names="Development">
         <script src="~/view-resources/Views/Borrow/Index.js" asp-append-version="true"></script>
-    </environment>
+    </environment>    
 }
-        <section class="content-header">
+    <section class="content-header">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-6">
-                    <div class="col-sm-12">
-                        <h1 class="m-0 text-dark">Borrower Information Dashboard</h1>
+                <div class="col-12 col-sm-6 col-md-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info elevation-1">
+                            <i class="fa fa-bookmark"></i>
+                        </span>
+                        <div class="info-box-content">
+                            <h1 class="info-box-text">Borrower Information Dashboard</h1>
+                        </div>
+                        <span class="info-box-icon">
+                            <a href="/Borrow/Create" class="save-button btn float-sm-right btn-lg" type="button" borrow-id="Id" style="border-radius: 50%;background-color:#0074B7;color:white">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </span>
                     </div>
-                </div>
-                <div class="col-sm-6">
-                    <a href="/Borrow/Create" class="save-button btn bg-blue float-sm-right" type="button" borrow-id="Id" style="border-radius: 50%;">
-                        <i class="fas fa-plus"></i>
-                    </a>
                 </div>
             </div>
         </div>
-    </section>
+    </section>   
 
     <div class="card">
         <div class="card-header">
@@ -113,7 +118,7 @@
                                     @if (borrows.Book.IsBorrowed)
                                     {
                                         <td>
-                                            <a href="/Borrow/Create/@borrows.Id" type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
+                                            <a href="/Borrow/Create/@borrows.Id" type="button" class="update-button btn btn-sm bg-primary edit-role" name="Update">
                                                 <i class="fas fa-pencil-alt"></i> Update
                                             </a>
                                             <button type="button" class="delete-button btn btn-sm bg-danger" name="Delete" borrow-id="@borrows.Id">
@@ -124,7 +129,7 @@
                                     else
                                     {
                                         <td>
-                                            <button location="/Borrow/Create/@borrows.Id" disabled type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
+                                            <button location="/Borrow/Create/@borrows.Id" disabled type="button" class="update-button btn btn-sm btn-primary edit-role" name="Update">
                                                 <i class="fas fa-pencil-alt"></i> Update
                                             </button>
                                             <button type="button" disabled class="delete-button btn btn-sm bg-danger" name="Delete" borrow-id="@borrows.Id">

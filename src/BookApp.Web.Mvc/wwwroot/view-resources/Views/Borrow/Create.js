@@ -30,38 +30,32 @@
         }
     }
 
-    $('#students').on('change', function () {
-        var student = document.getElementById('students').value();
-        var rowCount = student.rows.length;
+    window.onload = function () {
+        _$form.closest('div#form-control')
+        document.getElementById('students').addEventListener("change",
+            function () {
+                student_();
+            });
+        function student_() {
+            let student_ = document.getElementById('students');
+            let studentVal_ = student_.options[student_.selectedIndex].value;
+            if (student.StudentDepartmentId == book.DepartmentId) {
+                book_(studentVal_);
+            }            
+        }
+        function book_(studentVal_) {
+            let book = document.getElementById('books');
+            for (var i = 0; i < book.options.length; i++) {
+                if (book.options[i].value == studentVal_) {
+                    book.options[i].disabled = true;
+                }
+                else {
+                    book.options[i].enabled = true;
+                }
+            }
 
-        var studentSelected = $(this).val();
-        var bookSelected = row.find('#books');
-    })
-
-    //$('#students').on('change', function () {
-    //    var student = document.getElementById("students").value;
-    //    var book = document.getElementById("books").value;
-    //    var bookcategory = book.BookCategoriesId;
-
-
-    //    student = _$form[0].querySelectorAll("input[name='students']");
-    //    abp.ui.setBusy(_$form);
-    //    if (student.StudentDepartmentId == book.DepartmentId) {
-    //        for (var studentIndex in student) {
-    //            student.options[student.options.length] = new Options(studentIndex, studentIndex);
-    //        }
-    //        for (var bookcategoryIndex in bookcategory[this.value]) {
-    //            bookcategory.options[bookcategory.options.length] = new Option(bookcategoryIndex, bookcategoryIndex);
-    //        }
-    //        $('#books').on('change', function () {
-    //            var bookcat = bookcategory[bookcategory.value][this.value];
-    //            for (var bookIndex = 0; bookIndex < bookcat.length; bookIndex++) {
-    //                book.Options[book.options.length] = new Options(bookcat[bookIndex], bookcat[bookIndex]);
-    //            }
-    //        })
-    //    }
-    //})   
-
+        }
+    };
 
     $('#BorrowDate').on('change', function () {
         

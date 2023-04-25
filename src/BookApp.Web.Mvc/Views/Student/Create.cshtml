@@ -26,25 +26,25 @@
                 <div class="row">
                     <div class="col-md-9 mb-10">
                         <div role="tabpanel" class="tab-pane container active">
-                            <div class="form-group row required" style="text-align: center">
+                            <div class="form-group row required" style="text-align:right">
                                 <label class="col-md-3 col-form-label">Name</label><br>
                                 <div class="col-md-9">
                                     <input type="text" name="StudentName" id="StudentName" value="@Model?.StudentName" class="form-control" placeholder="Full Name" required maxlength="255" minlength="2">
                                 </div>
                             </div>
-                            <div class="form-group row required" style="text-align: right">
+                            <div class="form-group row required" style="text-align:right">
                                 <label class="col-md-3 col-form-label">Contact Number</label><br>
                                 <div class="col-md-9">
                                     <input type="number" name="StudentContactNumber" id="StudentContactNumber" value="@Model?.StudentContactNumber" class="form-control" placeholder="Contact Number" required maxlength="32" minlength="2">
                                 </div>
                             </div>
-                            <div class="form-group row required text-align: center">
+                            <div class="form-group row required" style="text-align:right">
                                 <label class="col-md-3 col-form-label">Email</label><br>
                                 <div class="col-md-9">
                                     <input type="email" name="StudentEmail" id="StudentEmail" value="@Model?.StudentEmail" class="form-control" placeholder="Email" required maxlength="255" minlength="2">
                                 </div>
                             </div>
-                            <div class="form-group row required text-align: center">
+                            <div class="form-group row required" style="text-align: right">
                                 <label class="col-md-3 col-form-label">Department</label><br>
                                 <div class="col-md-9">
                                     @Html.DropDownListFor(m => m.StudentDepartmentId, Model.ListDepartments.Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.Name}), "--Select Department--", new { @class = "form-control"})
