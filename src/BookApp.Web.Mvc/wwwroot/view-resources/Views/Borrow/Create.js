@@ -2,6 +2,7 @@
     var _borrowAppService = abp.services.app.borrow;
     var _$form = $('form[name=BorrowInformationForm]');
     var _indexPage = "/Borrow";
+    _$table = $('#RolesTable');
 
     function save() {
         if (!_$form.valid()) {
@@ -30,32 +31,18 @@
         }
     }
 
-    window.onload = function () {
-        _$form.closest('div#form-control')
-        document.getElementById('students').addEventListener("change",
-            function () {
-                student_();
-            });
-        function student_() {
-            let student_ = document.getElementById('students');
-            let studentVal_ = student_.options[student_.selectedIndex].value;
-            if (student.StudentDepartmentId == book.DepartmentId) {
-                book_(studentVal_);
-            }            
-        }
-        function book_(studentVal_) {
-            let book = document.getElementById('books');
-            for (var i = 0; i < book.options.length; i++) {
-                if (book.options[i].value == studentVal_) {
-                    book.options[i].disabled = true;
-                }
-                else {
-                    book.options[i].enabled = true;
-                }
-            }
+    $('#students').on('change', function () {
+        var student = document.getElementById("students").value;
+        var department = _$form.serializeFormToObject();
+        student.StudentDepartmentId = parseInt(student.StudentDepartmentId);
+        
+        var _$student = _$form[0].querySelectorAll("input[name='students']:checked");
+
+        if (student.StudentDepartmentId) {
 
         }
-    };
+               
+    })
 
     $('#BorrowDate').on('change', function () {
         

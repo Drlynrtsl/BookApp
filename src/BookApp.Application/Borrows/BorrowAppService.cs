@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using BookApp.Students.Dto;
 using System.Net.Http.Headers;
+using BookApp.Books.Dto;
 
 namespace BookApp.Borrows
 {
@@ -133,6 +134,15 @@ namespace BookApp.Borrows
         protected override void MapToEntity(BorrowDto updateInput, Borrow entity)
         {
             base.MapToEntity(updateInput, entity);
+        }
+
+        public async Task<List<BookDto>> GetAllBooksByStudentId(int id)
+        {
+            var query = await _repository.GetAll()
+                .Include(x => x.Student)
+                .Select(x => ObjectMapper.Map<BookDto>(x))
+                .ToListAsync();
+            return query;
         }
     }
 }

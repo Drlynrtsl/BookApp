@@ -83,7 +83,7 @@ namespace BookApp.Web.Controllers.Borrow
             }
              else //Create
             {
-                books = await _bookAppService.GetAvailableBooks();
+                books = await _borrowAppService.GetAllBooksByStudentId(id);
                 students = await _studentAppService.GetAllStudents();
                 departments = await _departmentAppService.GetAllDepartments();
                 bookcategories = await _bookCategoriesAppService.GetAllBookCategories();

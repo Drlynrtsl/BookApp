@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using BookApp.Books.Dto;
 using BookApp.Borrows.Dto;
 using BookApp.Departments.Dto;
 using System;
@@ -17,7 +18,7 @@ namespace BookApp.Borrows
         Task<BorrowDto> GetBorrowWithBookAndStudentUnderBookCategory(EntityDto<int> input);
         Task<BorrowDto> CreateAsync(CreateBorrowDto input);
         Task<BorrowDto> UpdateAsync(BorrowDto input);
-
+        Task<List<BookDto>> GetAllBooksByStudentId(int id);
         //Task<BorrowDto> GetAsync(int input);
         //Task Update(BorrowDto input);
         //Task Create(CreateBorrowDto input);
