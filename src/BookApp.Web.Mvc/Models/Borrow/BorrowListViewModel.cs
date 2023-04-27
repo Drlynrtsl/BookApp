@@ -7,12 +7,13 @@ using BookApp.Borrows.Dto;
 using BookApp.Departments.Dto;
 using BookApp.Authorization.Users;
 using BookApp.Roles.Dto;
+using BookApp.BookCategories.Dto;
 
 namespace BookApp.Web.Models.Borrow
 {
     public class BorrowListViewModel
     {
         public List<BorrowDto> Borrows { get; set; }
-       
+        public List<BookCategoriesDto> BookCategories { get; set; }
     }
 }

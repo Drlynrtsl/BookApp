@@ -8,12 +8,16 @@ using BookApp.Borrows.Dto;
 using BookApp.Controllers;
 using BookApp.Departments;
 using BookApp.Departments.Dto;
+using BookApp.Entities;
 using BookApp.Students;
 using BookApp.Students.Dto;
 using BookApp.Web.Models.Borrow;
 using BookApp.Web.Models.Department;
 using BookApp.Web.Models.Student;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -54,6 +58,17 @@ namespace BookApp.Web.Controllers.Borrow
             var students = new List <StudentDto>();
             var departments = new List<DepartmentDto>();
             var bookcategories = new List<BookCategoriesDto>();
+            //var getStudent = from student in students
+            //                     join department in departments on student.StudentDepartmentId equals department.Id
+            //                     join bookcategory in bookcategories on department.Id equals bookcategory.DepartmentId
+            //                     join book in books on bookcategory.DepartmentId equals book.BookCategoriesId
+            //                     where student.Id == id
+            //                     select new SelectListItem
+            //                     {
+            //                         Value = bookcategory.Id.ToString(),
+            //                         Text = bookcategory.Name,
+            //                     };
+            //return PartialView("_BookCategorieDropDown", getStudent);
 
             if (id != 0) //Update
             {
@@ -83,7 +98,7 @@ namespace BookApp.Web.Controllers.Borrow
             }
              else //Create
             {
-                books = await _borrowAppService.GetAllBooksByStudentId(id);
+                books = await _bookAppService.GetAvailableBooks();
                 students = await _studentAppService.GetAllStudents();
                 departments = await _departmentAppService.GetAllDepartments();
                 bookcategories = await _bookCategoriesAppService.GetAllBookCategories();

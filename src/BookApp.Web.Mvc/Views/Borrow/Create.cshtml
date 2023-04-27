@@ -69,6 +69,7 @@
                                 <label class="col-md-5 col-form-label" style="text-align:right">Book Title</label><br>                              
                                     <div class="col-md-5">
                                         @Html.DropDownListFor(m => m.BookId, Model.ListBooks.Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.BookTitle}), "--Select Book--", new { @class = "form-control books", @id="books"})
+                                        @*@Html.DropDownListFor(m=>m.BookId, new SelectList(Model.ListBooks,"Values","Text"), new{@class="form-control"})*@
                                     </div>
                             </div>
                         </div>

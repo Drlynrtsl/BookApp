@@ -38,6 +38,8 @@ namespace BookApp.Books
         public async Task<List<BookDto>> GetAvailableBooks()
         {
             var query = await _repository.GetAll()
+                .Include(x => x.BookCategories)
+                .ThenInclude(x => x.Department)
                 .Where(x => !x.IsBorrowed)
                 .Select(x => ObjectMapper.Map<BookDto>(x))
                 .ToListAsync();

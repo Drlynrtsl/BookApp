@@ -32,17 +32,17 @@
     }
 
     $('#students').on('change', function () {
-        var student = document.getElementById("students").value;
-        var department = _$form.serializeFormToObject();
-        student.StudentDepartmentId = parseInt(student.StudentDepartmentId);
-        
-        var _$student = _$form[0].querySelectorAll("input[name='students']:checked");
-
-        if (student.StudentDepartmentId) {
-
-        }
-               
-    })
+        var student = $(this).val();
+        _borrowAppService.getAllBooksByStudentId(student).done(function (result) {
+            var book = result.items;
+            /*var book = document.getElementById("books").value;*/
+            var options = '';
+            for (var i = 0; i < book.length; i++) {
+                options += '<option value ="' + book[i].BookId + '">' + book[i].BookTitle + '</option>';
+            }
+            $('#books').html(options);
+        });
+    });
 
     $('#BorrowDate').on('change', function () {
         
