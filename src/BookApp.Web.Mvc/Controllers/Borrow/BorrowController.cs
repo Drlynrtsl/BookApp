@@ -29,16 +29,12 @@ namespace BookApp.Web.Controllers.Borrow
         private readonly IBorrowAppService _borrowAppService;
         private readonly IBookAppService _bookAppService;
         private readonly IStudentAppService _studentAppService;
-        private readonly IDepartmentAppService _departmentAppService;
-        private readonly IBookCategoriesAppService _bookCategoriesAppService;
 
-        public BorrowController(IBorrowAppService borrowAppService, IBookAppService bookAppService, IStudentAppService studentAppService, IDepartmentAppService departmentAppService, IBookCategoriesAppService bookCategoriesAppService)
+        public BorrowController(IBorrowAppService borrowAppService, IBookAppService bookAppService, IStudentAppService studentAppService)
         {
             _borrowAppService = borrowAppService;
             _bookAppService = bookAppService;
             _studentAppService = studentAppService;
-            _departmentAppService = departmentAppService;
-            _bookCategoriesAppService = bookCategoriesAppService;
         }
        
         public async Task<IActionResult> Index()
@@ -56,21 +52,8 @@ namespace BookApp.Web.Controllers.Borrow
             var model = new CreateBorrowViewModel();
             var books = new List<BookDto>();
             var students = new List <StudentDto>();
-            var departments = new List<DepartmentDto>();
-            var bookcategories = new List<BookCategoriesDto>();
-            //var getStudent = from student in students
-            //                     join department in departments on student.StudentDepartmentId equals department.Id
-            //                     join bookcategory in bookcategories on department.Id equals bookcategory.DepartmentId
-            //                     join book in books on bookcategory.DepartmentId equals book.BookCategoriesId
-            //                     where student.Id == id
-            //                     select new SelectListItem
-            //                     {
-            //                         Value = bookcategory.Id.ToString(),
-            //                         Text = bookcategory.Name,
-            //                     };
-            //return PartialView("_BookCategorieDropDown", getStudent);
 
-            if (id != 0) //Update
+            if (id != 0) //Update Borrow Information
             {
                 var borrow = await _borrowAppService.GetBorrowWithBookAndStudentUnderBookCategory(new EntityDto<int>(id));
                 model = new CreateBorrowViewModel()
@@ -84,31 +67,20 @@ namespace BookApp.Web.Controllers.Borrow
                     StudentName = borrow.StudentName,
                     StudentDepartmentId = borrow.StudentDepartmentId,
                     Id = id,
-                    IsBorrowed = borrow.Book.IsBorrowed,
-                    DepartmentId = borrow.DepartmentId,
-                    DepartmentName = borrow.DepartmentName,
-                    BookCategoriesId = borrow.BookCategoriesId,
-                    BookCategoriesName = borrow.BookCategoriesName
+                    IsBorrowed = borrow.Book.IsBorrowed
                 };               
 
                 books.Add(ObjectMapper.Map<BookDto>(borrow.Book));
                 students.Add(ObjectMapper.Map<StudentDto>(borrow.Student));
-                departments.Add(ObjectMapper.Map<DepartmentDto>(borrow.Department));
-                bookcategories.Add(ObjectMapper.Map<BookCategoriesDto>(borrow.BookCategories));
             }
-             else //Create
+             else // Create Borrow Information
             {
                 books = await _bookAppService.GetAvailableBooks();
                 students = await _studentAppService.GetAllStudents();
-                departments = await _departmentAppService.GetAllDepartments();
-                bookcategories = await _bookCategoriesAppService.GetAllBookCategories();
             }
             
             model.ListBooks = books;
             model.ListStudents = students;
-            model.ListDepartments = departments;
-            model.ListBookCategories = bookcategories;
-            //ViewBag.model = departments;
 
             return View(model);
         }      

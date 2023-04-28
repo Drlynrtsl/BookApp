@@ -23,9 +23,5 @@ namespace BookApp.Borrows.Dto
         public int StudentId { get; set; }
         public string StudentName { get; set; }
         public int StudentDepartmentId { get; set; }
-        public int DepartmentId { get; set; }
-        public string DepartmentName { get; set; }
-        public int BookCategoriesId { get; set; }
-        public string BookCategoriesName { get; set; }
     }
 }

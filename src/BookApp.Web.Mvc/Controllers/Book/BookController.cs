@@ -4,6 +4,8 @@ using BookApp.BookCategories.Dto;
 using BookApp.Books;
 using BookApp.Books.Dto;
 using BookApp.Controllers;
+using BookApp.Departments;
+using BookApp.Departments.Dto;
 using BookApp.Students;
 using BookApp.Web.Models.Book;
 using Microsoft.AspNetCore.Mvc;
@@ -25,12 +27,7 @@ namespace BookApp.Web.Host.Controllers
             _bookCategoriesAppService = bookCategoriesAppService;
         }
 
-        [HttpGet]
-        public IActionResult Add()
-        {
-
-            return View();
-        }
+        [HttpGet]     
 
 
         public async Task<IActionResult> Index()
@@ -51,7 +48,7 @@ namespace BookApp.Web.Host.Controllers
             var model = new CreateBookViewModel();
             var bookcategories = new List<BookCategoriesDto>();
 
-            if (id != 0)
+            if (id != 0) //Update Book Information
             {
                 var book = await _bookAppService.GetBookWithBookCategories(new EntityDto<int>(id));
                 model = new CreateBookViewModel()
@@ -61,14 +58,14 @@ namespace BookApp.Web.Host.Controllers
                     BookPublisher = book.BookPublisher,
                     IsBorrowed = book.IsBorrowed,
                     BookCategoriesId = book.BookCategoriesId,
-                    Name = book.Name,
+                    BookCategoriesName = book.BookCategoriesName,
                     Id = id
                 };
 
                 bookcategories.Add(ObjectMapper.Map<BookCategoriesDto>(book.BookCategories));
             }
 
-            else
+            else //Create Book Information
             {
                 bookcategories = await _bookCategoriesAppService.GetAllBookCategories();
             }

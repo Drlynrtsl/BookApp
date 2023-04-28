@@ -9,6 +9,5 @@ namespace BookApp.Web.Models.Book
     {
         public List<BookDto> Books { get; set; }
 
-        //public List<BookCategoriesDto> BookCategories { get; set; }
     }
 }

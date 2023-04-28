@@ -13,14 +13,26 @@
     </environment>
 }
     <body>
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-info elevation-1">
+                                <i class="fa fa-bookmark"></i>
+                            </span>
+                            <div class="info-box-content">
+                                <h1 class="info-box-text">Borrow Book Information Form</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <div class="bg-opacity-5 py-2" id="form">
             <form style="text-align: center" name="BorrowInformationForm" role="form" class="form-validation form-horizontal">
-                <div class="container">
-                    <h3 class="col-md-12 text-center">Borrow Book Information Form</h3><br>
-                </div>
                 <div class="row g-1">
                     <div class="col-md-10 mb-10">
-                        <div>
                             <div role="tabpanel" class="tab-pane container active">
                                 <input type="hidden" name="Id" id="Id" value="@Model?.Id" class="form-control">                                
                             @if (Model.Id != 0)
@@ -73,10 +85,9 @@
                                     </div>
                             </div>
                         </div>
-                        </div>
                     </div>
                 </div>
-                <div class="container my-3 bg-light">
+            <div class="container my-3">
                     <div class="col-md-12 text-center">
                         <button type="button" class="back-button btn btn-default" name="Back">Back</button>
                         <button type="submit" class="save-button btn btn-primary" name="Create">Save</button>

@@ -2,7 +2,6 @@
     var _borrowAppService = abp.services.app.borrow;
     var _$form = $('form[name=BorrowInformationForm]');
     var _indexPage = "/Borrow";
-    _$table = $('#RolesTable');
 
     function save() {
         if (!_$form.valid()) {
@@ -10,11 +9,7 @@
         }
         var borrow = _$form.serializeFormToObject();
         borrow.BookId = parseInt(borrow.BookId);
-        borrow.StudentId = parseInt(borrow.StudentId);        
-        borrow.BookCategoriesId = parseInt(borrow.BookCategoriesId);        
-        borrow.DepartmentId = parseInt(borrow.DepartmentId);
-        borrow.StudentDepartmentId = parseInt(borrow.StudentDepartmentId);
-        borrow.StudentDepartmentId = borrow.DepartmentId;
+        borrow.StudentId = parseInt(borrow.StudentId);
         abp.ui.setBusy(_$form);
         if (borrow.Id != 0) {
             _borrowAppService.update(borrow).done(function () {
@@ -33,15 +28,27 @@
 
     $('#students').on('change', function () {
         var student = $(this).val();
-        _borrowAppService.getAllBooksByStudentId(student).done(function (result) {
-            var book = result.items;
-            /*var book = document.getElementById("books").value;*/
-            var options = '';
-            for (var i = 0; i < book.length; i++) {
-                options += '<option value ="' + book[i].BookId + '">' + book[i].BookTitle + '</option>';
-            }
-            $('#books').html(options);
-        });
+        if (student != 0) {
+            _borrowAppService.getAllBooksByStudentId(student).done(function (book) {
+                console.log(book);
+                $('#books').empty();
+                if (book && book.length != 0) {
+                    $('#books').html("");
+                    $('#books').append("<option value=''>--Select Book--</option>");
+                    for (var i = 0; i < book.length; i++) {
+                        $('#books').append("<option value='" + book[i].id + "'>" + book[i].bookTitle + "</option>");
+                        $('#books').prop('disabled', false);
+                    }
+                } else {
+                    $('#books').append($('<option disabled selected>No Books Available</option>').val(''));
+                    $('#books').prop('disabled', true);
+                    $('.save-button').prop('disabled', true);
+                }
+            });
+        } else {
+            $('#books').append($('<option disabled selected>No Student Available</option>').val(''));
+        }
+        
     });
 
     $('#BorrowDate').on('change', function () {

@@ -19,7 +19,6 @@ namespace BookApp.Web.Controllers.Student
         {
             _studentAppService = studentAppService;
             _departmentAppService = departmentAppService;
-
         }
 
 
@@ -38,7 +37,6 @@ namespace BookApp.Web.Controllers.Student
         {
             var model = new CreateStudentViewModel();
             var departments = await _departmentAppService.GetAllDepartments();
-            //ViewBag.Departments = departments;
 
             if (id != 0)
             {
@@ -54,48 +52,9 @@ namespace BookApp.Web.Controllers.Student
             }
 
             model.ListDepartments = departments;
-            //ViewBag.model = departments;
 
             return View(model);
         }
-
-        //[HttpPost]
-
-        //public async Task<IActionResult> Update(int id)
-        //{
-        //    var model = new CreateStudentViewModel();
-        //    if (id != 0)
-        //    {
-        //        var student = await _studentAppService.GetAsync(new EntityDto<int>(id));
-        //        model = new CreateStudentViewModel()
-        //        {
-        //            StudentName = student.StudentName,
-        //            StudentContactNumber = student.StudentContactNumber,
-        //            StudentEmail = student.StudentEmail,
-        //            StudentDepartment = student.StudentDepartment,
-        //            Id = id
-        //        };
-        //    }
-
-        //    return View(model);
-        //}
-
-        //public IActionResult AddDepart()
-        //{
-        //    DepartmentListViewModel depart = new DepartmentListViewModel
-        //    {
-        //        Department = new List<SelectListItem>
-        //        {
-        //            new SelectListItem { Value = "1", Text = "College of Nursing" },
-        //            new SelectListItem { Value = "2", Text = "College of Engineering" },
-        //            new SelectListItem { Value = "3", Text = "College of Computer Science" },
-        //            new SelectListItem { Value = "4", Text = "College of Education" },
-        //            new SelectListItem { Value = "5", Text = "College of Business and Accountancy" }
-        //        }
-        //    };
-
-        //    return View(depart);
-        //}
 
     }
 }

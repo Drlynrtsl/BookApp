@@ -44,7 +44,8 @@ namespace BookApp.Borrows
                     .ThenInclude(x => x.Department)
                 .Include(x => x.Student)
                     .ThenInclude(x => x.StudentDepartment)
-                .Select(x => ObjectMapper.Map<BorrowDto>(x))
+                .OrderByDescending(x => x.BorrowDate)
+                .Select(x => ObjectMapper.Map<BorrowDto>(x))                
                 .ToListAsync();
             return new PagedResultDto<BorrowDto>(query.Count(), query);
         }
@@ -57,19 +58,9 @@ namespace BookApp.Borrows
                 await _repository.InsertAsync(borrow);
 
                 var book = await _bookRepository.GetAsync(input.BookId);
-                var student = await _studentRepository.GetAsync(input.StudentId);
-                var bookcategory = await _bookCategoryRepository.GetAsync(input.BookCategoriesId);
-                var department = await _departmentRepository.GetAsync(input.DepartmentId);
                 book.IsBorrowed = true;
-
-                if (input.StudentDepartmentId == bookcategory.DepartmentId)
-                {
-                    book.BookCategoriesId = bookcategory.Id;
-                }
                  
                 await _bookRepository.UpdateAsync(book);
-                await _studentRepository.UpdateAsync(student);
-                await _bookCategoryRepository.UpdateAsync(bookcategory);
 
                 return base.MapToEntityDto(borrow);
             }
@@ -141,14 +132,14 @@ namespace BookApp.Borrows
         public async Task<List<BookDto>> GetAllBooksByStudentId(int id)
         {           
             var student = _studentRepository.GetAll()
-                .Include(x => x.StudentDepartmentId)
+                .Include(x => x.StudentDepartment)
                 .Where(x => x.Id == id)
                 .FirstOrDefault();
 
             var books = _bookRepository
-                .GetAllIncluding(x => x.BookCategories, x => x.BookCategories.DepartmentId)
-                .Where(x => x.BookCategories.DepartmentId == student.StudentDepartmentId)
-                .ToListAsync();
+                .GetAllIncluding(x => x.BookCategories, x => x.BookCategories.Department)
+                .Where(x => x.BookCategories.DepartmentId == student.StudentDepartmentId && !x.IsBorrowed)
+                .ToList();
 
             return ObjectMapper.Map<List<BookDto>>(books);
         }

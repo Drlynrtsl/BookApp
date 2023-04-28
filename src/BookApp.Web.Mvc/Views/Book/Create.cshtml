@@ -12,36 +12,49 @@
     </environment>
 }
     <body>
-        <div class="bg-opacity-5 py-2" id="form">
-            <form style="text-align: center" name="BookInformationForm" role="form" class="form-validation form-horizontal">
-                <div class="container">
-                    <h3 class="col-md-12 text-center">Book Information Form</h3><br>
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-info elevation-1">
+                                <i class="fa fa-book"></i>
+                            </span>
+                            <div class="info-box-content">
+                                <h1 class="info-box-text">Book Information Form</h1>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </section>
+        <div class="bg-opacity-5 py-2" id="form">
+            <form style="text-align: center" name="BookInformationForm" role="form" class="form-validation form-horizontal">                
                 <input type="hidden" name="Id" value="@Model?.Id" class="form-control">
                 <div class="row g-1">
                     <div class="col-md-10 mb-10">
                         <div role="tabpanel" class="tab-pane container active">
-                            <div class="form-group row mb-2 required" style="text-align: center">
-                                <label class="col-md-3 col-form-label" style="text-align:right">Book Title</label><br>
-                                <div class="col-md-9">
-                                    <input type="text" name="BookTitle" id="BookTitle" value="@Model?.BookTitle" class="form-control" placeholder="Title" required maxlength="255" minlength="2">
+                            <div class="form-group row mb-2 required floating-label" style="text-align: center">
+                                <label class="col-md-5 col-form-label floating-label__label" style="text-align:right">Book Title</label><br>
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control floating-label__input" name="BookTitle" id="BookTitle" value="@Model?.BookTitle" placeholder="Title" required maxlength="255" minlength="2">
                                 </div>
                             </div>
                             <div class="form-group row mb-2 required" style="text-align: center">
-                                <label class="col-md-3 col-form-label" style="text-align:right">Author</label><br>
-                                <div class="col-md-9">
+                                <label class="col-md-5 col-form-label" style="text-align:right">Author</label><br>
+                                <div class="col-md-5">
                                     <input type="text" name="BookAuthor" id="BookAuthor" value="@Model?.BookAuthor" class="form-control" placeholder="Author" required maxlength="32" minlength="2">
                                 </div>
                             </div>
                             <div class="form-group row mb-2 required" style="text-align: center">
-                                <label class="col-md-3 col-form-label" style="text-align:right">Publisher</label><br>
-                                <div class="col-md-9">
+                                <label class="col-md-5 col-form-label" style="text-align:right">Publisher</label><br>
+                                <div class="col-md-5">
                                     <input type="text" name="BookPublisher" id="BookPublisher" value="@Model?.BookPublisher" class="form-control" placeholder="Publisher" required maxlength="255" minlength="2">
                                 </div>
                             </div>
                             <input type="hidden" name="BookCategoriesId" id="BookCategoriesId" value="@Model?.BookCategoriesId" class="form-control">
                             <div class="form-group row required text-align: center">
-                                <label class="col-md-3 col-form-label" style="text-align:right">Categories</label><br>
+                                <label class="col-md-5 col-form-label" style="text-align:right">Categories</label><br>
                                 <div class="col-md-5">
                                     @Html.DropDownListFor(m => m.BookCategoriesId, Model.ListBookCategories.Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.Name}), "--Select Category--", new { @class = "form-control bookcategories", @id="bookcategories"})
                                 </div>
@@ -49,10 +62,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="container my-3 bg-light">
+                <div class="container my-3">
                     <div class="col-md-12 text-center">
-                        <button type="submit" class="save-button btn btn-primary" name="Create">Save</button>
                         <button type="button" class="back-button btn btn-outline-dark" name="Back">Back</button>
+                        <button type="submit" class="save-button btn btn-primary" name="Create">Save</button>                        
                     </div>
                 </div>
             </form>

@@ -13,14 +13,10 @@ namespace BookApp.Borrows
 {
     public interface IBorrowAppService : IAsyncCrudAppService<BorrowDto, int, PagedBorrowResultRequestDto, CreateBorrowDto, BorrowDto>
     {
-        //Task<PagedResultDto<BorrowDto>> GetAllPagedBorrowResult(PagedBorrowResultRequestDto input);
         Task<List<BorrowDto>> GetAllBorrows();
         Task<BorrowDto> GetBorrowWithBookAndStudentUnderBookCategory(EntityDto<int> input);
         Task<BorrowDto> CreateAsync(CreateBorrowDto input);
         Task<BorrowDto> UpdateAsync(BorrowDto input);
         Task<List<BookDto>> GetAllBooksByStudentId(int id);
-        //Task<BorrowDto> GetAsync(int input);
-        //Task Update(BorrowDto input);
-        //Task Create(CreateBorrowDto input);
     }
 }

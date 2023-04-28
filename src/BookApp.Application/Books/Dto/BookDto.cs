@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using BookApp.BookCategories.Dto;
+using BookApp.Departments.Dto;
 using BookApp.Entities;
 using System;
 
@@ -15,7 +16,7 @@ namespace BookApp.Books.Dto
         public string BookAuthor { get; set; }
         public bool IsBorrowed { get; set; }
         public int BookCategoriesId { get; set; }
-        public string Name { get; set; }
+        public string BookCategoriesName { get; set; }
         public BookCategoriesDto BookCategories { get; set; }
     }
 }
