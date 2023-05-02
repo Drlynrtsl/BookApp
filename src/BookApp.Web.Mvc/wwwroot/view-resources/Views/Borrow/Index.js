@@ -6,14 +6,16 @@
 
     $(document).on('click', '.delete-button', function () {
         var borrowId = parseInt($(this).attr("borrow-id"));
-        var borrowBookName = parseInt($(this).attr("borrow-book-name"));
-
-        deleteId(borrowId, borrowBookName);
+        var borrowBookId = ($(this).attr("borrow-book-id"));
+        var borrowBookName = ($(this).attr("borrow-book-name"));
+        var borrowStudentId = ($(this).attr("borrow-book-id"));
+        var borrowStudentName = ($(this).attr("borrow-student-name"));
+        deleteId(borrowId, borrowBookId, borrowBookName, borrowStudentId, borrowStudentName);
     });
 
-    function deleteId(borrowId, borrowBookName) {
+    function deleteId(borrowId, borrowBookName, borrowStudentName) {
         abp.message.confirm(
-            abp.utils.formatString(l('AreYouSureWantToDelete', borrowBookName)), null,
+            abp.utils.formatString(l('AreYouSureWantToDelete', borrowBookName, borrowStudentName)), null,
             function (isConfirmed) {
                 if (isConfirmed) {
                     if (borrowId != 0) {
@@ -26,12 +28,6 @@
 
             });
     }
-    //$('#BorrowDate').on('change', function () {
-    //    var borrowDate = new Date(document.getElementById("BorrowDate").value);
-
-    //    document.getElementById("ExpectedReturnDate").value = borrowDate.addDays(7);
-    //})
-
 
     function update() {
         window.location.href = "/Borrow/Create/@borrows.Id";

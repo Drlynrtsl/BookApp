@@ -20,11 +20,9 @@ namespace BookApp.Books
     public class BookAppService : AsyncCrudAppService<BookInfo, BookDto, int, PagedBookResultRequestDto, CreateBookDto, BookDto>, IBookAppService
     {
         private readonly IRepository<BookInfo, int> _repository;
-        private readonly IRepository<BookCategory, int> _bookCategoryRepository;
-        public BookAppService(IRepository<BookInfo, int> repository, IRepository<BookCategory, int> bookCategoryRepository) : base(repository)
+        public BookAppService(IRepository<BookInfo, int> repository) : base(repository)
         {
             _repository = repository;
-            _bookCategoryRepository = bookCategoryRepository;
         }
 
         public async Task<List<BookDto>> GetAllBooks()

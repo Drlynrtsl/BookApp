@@ -53,7 +53,7 @@ namespace BookApp.Web.Controllers.Borrow
             var books = new List<BookDto>();
             var students = new List <StudentDto>();
 
-            if (id != 0) //Update Borrow Information
+            if (id != 0)
             {
                 var borrow = await _borrowAppService.GetBorrowWithBookAndStudentUnderBookCategory(new EntityDto<int>(id));
                 model = new CreateBorrowViewModel()
@@ -73,7 +73,7 @@ namespace BookApp.Web.Controllers.Borrow
                 books.Add(ObjectMapper.Map<BookDto>(borrow.Book));
                 students.Add(ObjectMapper.Map<StudentDto>(borrow.Student));
             }
-             else // Create Borrow Information
+             else
             {
                 books = await _bookAppService.GetAvailableBooks();
                 students = await _studentAppService.GetAllStudents();

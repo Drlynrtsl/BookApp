@@ -27,9 +27,7 @@ namespace BookApp.Web.Host.Controllers
             _bookCategoriesAppService = bookCategoriesAppService;
         }
 
-        [HttpGet]     
-
-
+        [HttpGet]    
         public async Task<IActionResult> Index()
         {
             
@@ -48,7 +46,7 @@ namespace BookApp.Web.Host.Controllers
             var model = new CreateBookViewModel();
             var bookcategories = new List<BookCategoriesDto>();
 
-            if (id != 0) //Update Book Information
+            if (id != 0)
             {
                 var book = await _bookAppService.GetBookWithBookCategories(new EntityDto<int>(id));
                 model = new CreateBookViewModel()
@@ -65,7 +63,7 @@ namespace BookApp.Web.Host.Controllers
                 bookcategories.Add(ObjectMapper.Map<BookCategoriesDto>(book.BookCategories));
             }
 
-            else //Create Book Information
+            else
             {
                 bookcategories = await _bookCategoriesAppService.GetAllBookCategories();
             }

@@ -27,18 +27,6 @@
             });
     }
 
-    //$(document).ready(function () {
-    //    $(".datepicker").datepicker({
-    //        dateFormat: "dd-mm-yy",
-    //        changeday: true,
-    //        changemonth: true,
-    //        changeyear: true
-    //    });
-    //});
-
-    function update() {
-        window.location.href = "/Department/Create/@departments.Id";
-    }
     _$form.closest('div#form')
         .find(".back-button")
         .click(function (e) {

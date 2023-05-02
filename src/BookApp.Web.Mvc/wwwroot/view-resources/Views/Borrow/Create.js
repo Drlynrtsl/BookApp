@@ -30,7 +30,6 @@
         var student = $(this).val();
         if (student != 0) {
             _borrowAppService.getAllBooksByStudentId(student).done(function (book) {
-                console.log(book);
                 $('#books').empty();
                 if (book && book.length != 0) {
                     $('#books').html("");
@@ -38,6 +37,7 @@
                     for (var i = 0; i < book.length; i++) {
                         $('#books').append("<option value='" + book[i].id + "'>" + book[i].bookTitle + "</option>");
                         $('#books').prop('disabled', false);
+                        $('.save-button').prop('disabled', false);
                     }
                 } else {
                     $('#books').append($('<option disabled selected>No Books Available</option>').val(''));

@@ -6,7 +6,7 @@
 
     $(document).on('click', '.delete-button', function () {
         var bookCategoryId = parseInt($(this).attr("bookcategory-id"));
-        var bookCategoryName = parseInt($(this).attr("bookcategory-name"));
+        var bookCategoryName = ($(this).attr("bookcategory-name"));
 
         deleteId(bookCategoryId, bookCategoryName);
     });

@@ -8,7 +8,6 @@
             return;
         }
         var book = _$form.serializeFormToObject();
-        /*book.StudentId = parseInt(book.StudentId);*/
         book.BookCategoriesId = parseInt(book.BookCategoriesId);
         abp.ui.setBusy(_$form);
         if (book.Id != 0) {
@@ -25,13 +24,9 @@
             });
         }
     }
-
-
-
     function cancel() {
         window.location.href = _indexPage;
     }
-    //Handle save button click 
     _$form.closest('div#form')
         .find(".save-button")
         .click(function (e) {

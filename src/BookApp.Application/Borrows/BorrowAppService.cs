@@ -19,14 +19,12 @@ namespace BookApp.Borrows
     {
         private readonly IRepository<Borrow, int> _repository;
         private readonly IRepository<BookInfo, int> _bookRepository;
-        private readonly IRepository<BookCategory, int> _bookCategoryRepository;
         private readonly IRepository<Student, int> _studentRepository;
         private readonly IRepository<Department, int> _departmentRepository;
-        public BorrowAppService(IRepository<Borrow, int> repository, IRepository<BookInfo, int> bookRepository, IRepository<BookCategory, int> bookCategoryRepository, IRepository<Student, int> studentRepository, IRepository<Department, int> departmentRepository) : base(repository)
+        public BorrowAppService(IRepository<Borrow, int> repository, IRepository<BookInfo, int> bookRepository, IRepository<Student, int> studentRepository, IRepository<Department, int> departmentRepository) : base(repository)
         {
             _repository = repository;
             _bookRepository = bookRepository;
-            _bookCategoryRepository = bookCategoryRepository;
             _studentRepository = studentRepository;
             _departmentRepository = departmentRepository;
         }

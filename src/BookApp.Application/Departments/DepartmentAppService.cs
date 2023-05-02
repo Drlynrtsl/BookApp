@@ -22,6 +22,11 @@ namespace BookApp.Departments
             _repository = repository;
         }
 
+        public override Task DeleteAsync(EntityDto<int> input)
+        {
+            return base.DeleteAsync(input);
+        }
+
         public override Task<PagedResultDto<DepartmentDto>> GetAllAsync(PagedDepartmentResultRequestDto input)
         {
             return base.GetAllAsync(input);
