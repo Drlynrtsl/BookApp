@@ -28,8 +28,6 @@
     function cancel() {
         window.location.href = _indexPage;
     }
-
-
     _$form.closest('div#form')
         .find(".save-button")
         .click(function (e) {

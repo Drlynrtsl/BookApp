@@ -6,11 +6,8 @@ using BookApp.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using BookApp.Students.Dto;
-using System.Net.Http.Headers;
 using BookApp.Books.Dto;
 
 namespace BookApp.Borrows
@@ -20,17 +17,17 @@ namespace BookApp.Borrows
         private readonly IRepository<Borrow, int> _repository;
         private readonly IRepository<BookInfo, int> _bookRepository;
         private readonly IRepository<Student, int> _studentRepository;
-        private readonly IRepository<Department, int> _departmentRepository;
-        public BorrowAppService(IRepository<Borrow, int> repository, IRepository<BookInfo, int> bookRepository, IRepository<Student, int> studentRepository, IRepository<Department, int> departmentRepository) : base(repository)
+        public BorrowAppService(IRepository<Borrow, int> repository, IRepository<BookInfo, int> bookRepository, IRepository<Student, int> studentRepository) : base(repository)
         {
             _repository = repository;
             _bookRepository = bookRepository;
             _studentRepository = studentRepository;
-            _departmentRepository = departmentRepository;
         }
         public async Task<List<BorrowDto>> GetAllBorrows()
         {
-            var query = await _repository.GetAll().Select(x => ObjectMapper.Map<BorrowDto>(x)).ToListAsync();
+            var query = await _repository.GetAll()
+                .Select(x => ObjectMapper.Map<BorrowDto>(x))
+                .ToListAsync();
             return query;
         }
 

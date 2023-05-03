@@ -11,8 +11,7 @@ namespace BookApp.Departments.Dto
 {
     [AutoMapTo(typeof(Department))]
     public class CreateDepartmentDto
-    {
-        
+    {        
         [Required]
         public string Name { get; set; }
     }

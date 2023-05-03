@@ -2,20 +2,15 @@
     var _borrowAppService = abp.services.app.borrow;
     l = abp.localization.getSource('BookApp');
     var _$form = $('form[name=BorrowInformationForm]');
-    var _indexPage = "/Borrow";
 
     $(document).on('click', '.delete-button', function () {
         var borrowId = parseInt($(this).attr("borrow-id"));
-        var borrowBookId = ($(this).attr("borrow-book-id"));
-        var borrowBookName = ($(this).attr("borrow-book-name"));
-        var borrowStudentId = ($(this).attr("borrow-book-id"));
-        var borrowStudentName = ($(this).attr("borrow-student-name"));
-        deleteId(borrowId, borrowBookId, borrowBookName, borrowStudentId, borrowStudentName);
+        deleteId(borrowId);
     });
 
-    function deleteId(borrowId, borrowBookName, borrowStudentName) {
+    function deleteId(borrowId) {
         abp.message.confirm(
-            abp.utils.formatString(l('AreYouSureWantToDelete', borrowBookName, borrowStudentName)), null,
+            abp.utils.formatString(l('Are you sure want to delete this?')), null,
             function (isConfirmed) {
                 if (isConfirmed) {
                     if (borrowId != 0) {
@@ -27,10 +22,6 @@
                 }
 
             });
-    }
-
-    function update() {
-        window.location.href = "/Borrow/Create/@borrows.Id";
     }
     _$form.closest('div#form')
         .find(".back-button")

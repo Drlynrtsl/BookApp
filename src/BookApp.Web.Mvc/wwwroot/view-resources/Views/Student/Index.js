@@ -27,20 +27,11 @@
             });
     }
 
-    function update() {
-        window.location.href = "/Student/Create/@students.Id";
-    }
     _$form.closest('div#form')
         .find(".back-button")
         .click(function (e) {
             e.preventDefault();
             cancel();
         });
-    //_$form.closest('div#form')
-    //    .find(".update-button")
-    //    .click(function (e) {
-    //        e.preventDefault();
-    //        update();
-    //    });
 })(jQuery);
 

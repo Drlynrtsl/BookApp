@@ -52,7 +52,7 @@
                                 <div class="form-group row md-2 required">
                                     <label class="col-md-5 col-form-label" style="text-align:right">Return Date</label>
                                     <div class="col-md-3">
-                                        <input type="date" name="ReturnDate" id="ReturnDate" value="@Model?.ReturnDate?" class="form-control">
+                                        <input type="date" name="ReturnDate" id="ReturnDate" value="@Model?.ReturnDate" class="form-control">
                                     </div>
                                 </div>
                             }else{
@@ -80,8 +80,7 @@
                             <div class="form-group row required text-align: center">
                                 <label class="col-md-5 col-form-label" style="text-align:right">Book Title</label><br>                              
                                     <div class="col-md-5">
-                                        @Html.DropDownListFor(m => m.BookId, Model.ListBooks.Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.BookTitle}), "--Select Book--", new { @class = "form-control books", @id="books"})
-                                        @*@Html.DropDownListFor(m=>m.BookId, new SelectList(Model.ListBooks,"Values","Text"), new{@class="form-control"})*@
+                                        @Html.DropDownListFor(m => m.BookId, Model.ListBooks.Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.BookTitle}), "--Select Book--", new { @class = "form-control books", @id="books"})                                        
                                     </div>
                             </div>
                         </div>

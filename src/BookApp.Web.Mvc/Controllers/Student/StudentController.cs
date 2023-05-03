@@ -20,8 +20,6 @@ namespace BookApp.Web.Controllers.Student
             _studentAppService = studentAppService;
             _departmentAppService = departmentAppService;
         }
-
-
         public async Task<IActionResult> Index()
         {
             var students = await _studentAppService.GetAllAsync(new PagedStudentResultRequestDto { MaxResultCount = int.MaxValue });

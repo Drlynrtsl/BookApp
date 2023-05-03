@@ -16,7 +16,6 @@ namespace BookApp.Web.Models.Student
         [Required]
         public int StudentDepartmentId { get; set; }
         public List<DepartmentDto> ListDepartments { get; set; }
-
        
     }
 }

@@ -2,7 +2,6 @@
     var _departmentAppService = abp.services.app.department;
     l = abp.localization.getSource('BookApp');
     var _$form = $('form[name=DepartmentInformationForm]');
-    var _indexPage = "/Department";
 
     $(document).on('click', '.delete-button', function () {
         var departmentId = parseInt($(this).attr("department-id"));

@@ -2,7 +2,6 @@
     var _bookAppService = abp.services.app.book;
     l = abp.localization.getSource('BookApp');
     var _$form = $('form[name=BookInformationForm]');
-    var _indexPage = "/Book";
 
     $(document).on('click', '.delete-button', function () {
         var bookId = parseInt($(this).attr("book-id"));

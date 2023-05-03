@@ -1,17 +1,12 @@
 ﻿using Abp.Application.Services.Dto;
 using BookApp.BookCategories;
 using BookApp.BookCategories.Dto;
-using BookApp.Borrows.Dto;
 using BookApp.Controllers;
 using BookApp.Departments;
-using BookApp.Departments.Dto;
 using BookApp.Web.Models.BookCategories;
-using BookApp.Web.Models.Borrow;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static System.Reflection.Metadata.BlobBuilder;
 
 namespace BookApp.Web.Controllers.BookCategories
 {

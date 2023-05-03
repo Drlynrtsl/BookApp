@@ -2,7 +2,6 @@
     var _bookCategoriesAppService = abp.services.app.bookCategories;
     l = abp.localization.getSource('BookApp');
     var _$form = $('form[name=BookCategoryInformationForm]');
-    var _indexPage = "/Borrow";
 
     $(document).on('click', '.delete-button', function () {
         var bookCategoryId = parseInt($(this).attr("bookcategory-id"));

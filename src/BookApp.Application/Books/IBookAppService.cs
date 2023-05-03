@@ -12,11 +12,9 @@ using System.Threading.Tasks;
 namespace BookApp.Books
 {
     public interface IBookAppService : IAsyncCrudAppService<BookDto, int, PagedBookResultRequestDto, CreateBookDto, BookDto>
-    {
-        //Task<PagedResultDto<BookDto>> GetAllPagedBookResult(PagedBookResultRequestDto input);
+    {       
         Task<List<BookDto>> GetAllBooks();
         Task<List<BookDto>> GetAvailableBooks();
-
         Task<BookDto> GetBookWithBookCategories(EntityDto<int> input);
     }
 }

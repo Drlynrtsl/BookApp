@@ -3,14 +3,10 @@ using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using BookApp.Students.Dto;
 using BookApp.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using BookApp.Departments.Dto;
-using BookApp.Books.Dto;
 
 namespace BookApp.Students
 {
@@ -34,12 +30,17 @@ namespace BookApp.Students
 
         public async Task<List<StudentDto>> GetAllStudents()
         {
-            var query = await _repository.GetAll().Select(x => ObjectMapper.Map<StudentDto>(x)).ToListAsync();
+            var query = await _repository.GetAll()
+                .Select(x => ObjectMapper.Map<StudentDto>(x))
+                .ToListAsync();
             return query;
         }
         public override async Task<PagedResultDto<StudentDto>> GetAllAsync(PagedStudentResultRequestDto input)
         {
-            var query = await _repository.GetAll().Include(x => x.StudentDepartment).Select(x => ObjectMapper.Map<StudentDto>(x)).ToListAsync();
+            var query = await _repository.GetAll()
+                .Include(x => x.StudentDepartment)
+                .Select(x => ObjectMapper.Map<StudentDto>(x))
+                .ToListAsync();
             return new PagedResultDto<StudentDto>(query.Count(), query);
         }
 

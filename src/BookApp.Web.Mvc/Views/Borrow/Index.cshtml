@@ -56,7 +56,7 @@
                             </thead>
                         @foreach (var borrows in Model.Borrows)
                         {
-                            @if (borrows.ReturnDate > borrows.ExpectedReturnDate || borrows.ExpectedReturnDate < DateTime.Now && borrows.Book.IsBorrowed == true)
+                            @if ((borrows.Book.IsBorrowed == false && borrows.ReturnDate > borrows.ExpectedReturnDate) || (borrows.Book.IsBorrowed == true && borrows.ExpectedReturnDate < DateTime.Now))
                             {
                                 <tr style="background-color:#A30000;color:white">
                                     <td>@borrows.BorrowDate.ToString("yyyy-MM-dd")</td>
@@ -80,7 +80,7 @@
                                             <a href="/Borrow/Create/@borrows.Id" type="button" class="update-button btn btn-sm bg-secondary edit-role" name="Update">
                                                 <i class="fas fa-pencil-alt"></i> Update
                                             </a>
-                                            <button type="button" class="delete-button btn btn-sm bg-danger" name="Delete" borrow-id="@borrows.Id" borrow-book-name="@borrows.Book.BookTitle" borrow-student-name="@borrows.Student.StudentName">
+                                            <button type="button" class="delete-button btn btn-sm bg-danger" name="Delete" borrow-id="@borrows.Id">
                                                 <i class="fas fa-trash"></i> Delete
                                             </button>
                                         </td>
@@ -132,7 +132,7 @@
                                             <button location="/Borrow/Create/@borrows.Id" disabled type="button" class="update-button btn btn-sm btn-primary edit-role" name="Update">
                                                 <i class="fas fa-pencil-alt"></i> Update
                                             </button>
-                                            <button type="button" disabled class="delete-button btn btn-sm bg-danger" name="Delete" borrow-id="@borrows.Id">
+                                            <button type="button" disabled class="delete-button btn btn-sm bg-danger" name="Delete" borrow-id="@borrows.Id" borrow-date="@borrows.BorrowDate">
                                                 <i class="fas fa-trash"></i> Delete
                                             </button>
                                         </td>

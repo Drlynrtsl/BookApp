@@ -1,12 +1,8 @@
 ﻿using Abp.Application.Services;
 using Abp.Domain.Repositories;
 using BookApp.Entities;
-using BookApp.Students.Dto;
-using BookApp.Students;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using BookApp.Departments.Dto;
 using Abp.Application.Services.Dto;
@@ -34,7 +30,9 @@ namespace BookApp.Departments
 
         public async Task<List<DepartmentDto>> GetAllDepartments()
         {
-            var query = await _repository.GetAll().Select(x => ObjectMapper.Map<DepartmentDto>(x)).ToListAsync();
+            var query = await _repository.GetAll()
+                .Select(x => ObjectMapper.Map<DepartmentDto>(x))
+                .ToListAsync();
             return query;
         }
 

@@ -1,16 +1,12 @@
 ﻿using Abp.Application.Services;
 using BookApp.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using BookApp.BookCategories.Dto;
-using BookApp.Departments.Dto;
 using Microsoft.EntityFrameworkCore;
-using BookApp.Borrows.Dto;
 
 namespace BookApp.BookCategories
 {
@@ -25,7 +21,9 @@ namespace BookApp.BookCategories
 
         public async Task<List<BookCategoriesDto>> GetAllBookCategories()
         {
-            var query = await _repository.GetAll().Select(x => ObjectMapper.Map<BookCategoriesDto>(x)).ToListAsync();
+            var query = await _repository.GetAll()
+                .Select(x => ObjectMapper.Map<BookCategoriesDto>(x))
+                .ToListAsync();
             return query;
         }
 

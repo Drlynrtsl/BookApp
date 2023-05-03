@@ -24,6 +24,24 @@ namespace BookApp.Web.Startup
                 //)
                 .AddItem(
                     new MenuItemDefinition(
+                        PageNames.Department,
+                        L("Department"),
+                        url: "Department",
+                        icon: "fa fa-sitemap",
+                        requiresAuthentication: true
+                    )
+                )
+                .AddItem(
+                    new MenuItemDefinition(
+                        PageNames.BookCategories,
+                        L("BookCategories"),
+                        url: "BookCategories",
+                        icon: "fa fa-bars",
+                        requiresAuthentication: true
+                    )
+                )
+                .AddItem(
+                    new MenuItemDefinition(
                         PageNames.Book,
                         L("Book"),
                         url: "Book",
@@ -42,15 +60,6 @@ namespace BookApp.Web.Startup
                 )
                 .AddItem(
                     new MenuItemDefinition(
-                        PageNames.Department,
-                        L("Department"),
-                        url: "Department",
-                        icon: "fa fa-sitemap",
-                        requiresAuthentication: true
-                    )
-                )
-                .AddItem(
-                    new MenuItemDefinition(
                         PageNames.Borrow,
                         L("Borrow"),
                         url: "Borrow",
@@ -58,15 +67,6 @@ namespace BookApp.Web.Startup
                         requiresAuthentication: true
                     )
                 )
-                .AddItem(
-                    new MenuItemDefinition(
-                        PageNames.BookCategories,
-                        L("BookCategories"),
-                        url: "BookCategories",
-                        icon: "fa fa-bars",
-                        requiresAuthentication: true
-                    )
-                )/*;*/
             .AddItem(
                 new MenuItemDefinition(
                     PageNames.About,
